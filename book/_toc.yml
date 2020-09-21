@@ -1,1 +1,4 @@
 - file: intro
+- part: Orbital Mechanics
+  chapters:
+    - file: orbital-mechanics/conic-sections.ipynb
