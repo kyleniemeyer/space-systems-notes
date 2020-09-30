@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 <html>
@@ -7,16 +6,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Introduction to orbital mechanics: conic sections &#8212; Space Systems Engineering notes</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="../_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css" type="text/css" />
+    
+  <link rel="stylesheet" href="../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/spanels-index--0afa1ebdab0bb23b98b56d34c23d9f57.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/spanels-variables--ffc7f74dcb1b9eecba2dbcbc22818714.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.30270b6e4c972e43c488.js">
+
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
@@ -25,8 +44,10 @@
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -38,8 +59,8 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Space Systems Engineering Notes" href="../intro.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
 
 
 
@@ -192,12 +213,21 @@
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
         <div class="tocsection onthispage pt-5 pb-3">
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orbital-equation-of-motion">
+   Orbital equation of motion
+  </a>
+ </li>
+</ul>
+
         </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -207,6 +237,51 @@
                 
   <div class="section" id="introduction-to-orbital-mechanics-conic-sections">
 <h1>Introduction to orbital mechanics: conic sections<a class="headerlink" href="#introduction-to-orbital-mechanics-conic-sections" title="Permalink to this headline">¶</a></h1>
+<p>Orbital mechanics refers to the study of motion due to the gravitational influence of one mass over another.
+To start, we’ll focus on unperturbed orbits mostly of satellites around Earth, meaning orbits that result
+only from the force of gravity from a larger body, and without the influence of</p>
+<ul class="simple">
+<li><p>thrust forces</p></li>
+<li><p>gravitational perturbations</p></li>
+<li><p>irregularities in the Earth’s radius</p></li>
+</ul>
+<p>To determine what orbits are possible, we need to derive the orbital equation of motion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># these lines are only for helping improve the display</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">set_matplotlib_formats</span>
+<span class="n">set_matplotlib_formats</span><span class="p">(</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span><span class="o">=</span> <span class="mi">150</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;savefig.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="orbital-equation-of-motion">
+<h2>Orbital equation of motion<a class="headerlink" href="#orbital-equation-of-motion" title="Permalink to this headline">¶</a></h2>
+<p>For now, we will focus on orbital problems involving two bodies (i.e., the two-body problem), with two
+different masses, usually where one is much larger than the other, such as a satellite orbiting the Earth.</p>
+<p>We will also focus on orbital motion in the two-dimensional <strong>perifocal frame</strong>, where all motion remains
+in the same two-dimensional plane with the two masses.</p>
+<p><span class="math notranslate nohighlight">\(\vec{R_1}\)</span> and <span class="math notranslate nohighlight">\(\vec{R_2}\)</span> are the position vectors for masses <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span>, respectively, from some absolute
+frame of reference, and then we can define the relative position vector from <span class="math notranslate nohighlight">\(M_1\)</span> to <span class="math notranslate nohighlight">\(M_2\)</span> as <span class="math notranslate nohighlight">\(\vec{r} = \vec{R_2} - \vec{R_1}\)</span>.</p>
+<p>These masses act on each other via the force of gravity—this is reciprocal, in that each mass acts on the other.
+Newton’s gravitational law states that this force is</p>
+<div class="math notranslate nohighlight">
+\[
+F_{12} = G \frac{m_1 m_2}{r^2} = -F_{21} \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(r^2 = | \vec{r} |\)</span> and <span class="math notranslate nohighlight">\(G = 6.674 \cdot 10^{-11}\)</span> m<sup>3</sup>/(kg s<sup>2</sup>), the universal gravitational constant.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -259,7 +334,10 @@
       </div>
     </div>
 
-    <script src="../_static/js/index.js"></script>
+    
+  <script src="../_static/js/index.30270b6e4c972e43c488.js"></script>
+
+
     
   </body>
 </html>
