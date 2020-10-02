@@ -317,8 +317,8 @@ which must remain constant, we can obtain the <strong>Lagrange identity</strong>
 <div class="section" id="lagrange-coefficients">
 <h3>Lagrange coefficients<a class="headerlink" href="#lagrange-coefficients" title="Permalink to this headline">¶</a></h3>
 <p>Via a complicated derivation, we can find closed-form expressions for the Lagrange coefficients:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
+<div class="math notranslate nohighlight" id="equation-lagrange">
+<span class="eqno">(1)<a class="headerlink" href="#equation-lagrange" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \begin{align}
 f &amp;= 1 - \frac{\mu r}{h^2} \left( 1 - \cos \Delta \theta \right) \\
 g &amp;= \frac{r r_0}{h} \sin \Delta \theta \\
@@ -346,8 +346,116 @@ r = \frac{h^2}{\mu} \frac{1}{1 + \left( \frac{h^2}{\mu r_0} - 1 \right) \cos \De
 <h2>Example workflow<a class="headerlink" href="#example-workflow" title="Permalink to this headline">¶</a></h2>
 <p>The workflow for solving a problem follows these steps:</p>
 <ol class="simple">
-<li><p>Calculate the magnitudes and necessary quantities:</p></li>
+<li><p>Calculate the magnitudes and necessary quantities: <span class="math notranslate nohighlight">\(r_0 = |\vec{r}_0|\)</span>, <span class="math notranslate nohighlight">\(v_0 = |\vec{v}_0|\)</span>,
+<span class="math notranslate nohighlight">\(\vec{h} = \vec{r} \times \vec{v}\)</span>, <span class="math notranslate nohighlight">\(h = |\vec{h}|\)</span>, and <span class="math notranslate nohighlight">\(v_{r0} = \frac{ \vec{r}_0 \cdot \vec{v}_0 }{ |r_0| }\)</span>.</p></li>
+<li><p>An optional step is to determine the initial true anomaly, and from that the eccentricity of the orbit <span class="math notranslate nohighlight">\(e\)</span>
+(which would tell us what kind of orbit this is):</p></li>
 </ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\theta_0 &amp;= \tan^{-1} \left( \frac{r_{0y}}{r_{0x}} \right) \\
+r_0 &amp;= \frac{h^2 / \mu}{1 + e \cos \theta_0 } \\
+\rightarrow e &amp;= \left( \frac{h^2 / \mu}{r_0} - 1 \right) / \cos \theta_0
+\end{align}
+\end{split}\]</div>
+<ol class="simple">
+<li><p>Calculate the new radial distance:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+ r = \frac{h^2}{\mu} \frac{1}{1 + \left( \frac{h^2}{\mu r_0} - 1 \right) \cos \Delta \theta - \frac{h v_{r0}}{\mu} \sin \Delta \theta }
+\]</div>
+<ol class="simple">
+<li><p>Calculate the Lagrange coefficients <span class="math notranslate nohighlight">\(f, g, \dot{f}, \dot{g}\)</span>, using Equation <a class="reference internal" href="#equation-lagrange">(1)</a>.</p></li>
+<li><p>Finally, calculate the new position and velocity vectors:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{r} &amp;= f \vec{r}_0 + g \vec{v}_0 \\
+\vec{v} &amp;= \dot{f} \vec{r}_0 + \dot{g} \vec{v}_0
+\end{align}
+\end{split}\]</div>
+<p>Here’s example code in Matlab and Python for doing these steps:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="f6f4bb9e-04ff-447f-998d-0d9a7149e6a7" name="043c4445-6e64-4c29-a4e8-97cceda96414" type="radio">
+</input><label class="tabbed-label" for="f6f4bb9e-04ff-447f-998d-0d9a7149e6a7">
+matlab</label><div class="tabbed-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
+<span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
+<span class="n">v0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
+<span class="n">delta_theta</span> <span class="p">=</span> <span class="p">.;</span>
+
+<span class="c">% 1. Calculate magnitudes</span>
+<span class="n">r0_mag</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r0</span><span class="p">));</span>
+<span class="n">v0_mag</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">v0</span><span class="p">));</span>
+
+<span class="n">h</span> <span class="p">=</span> <span class="nb">cross</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">v0</span><span class="p">);</span>
+<span class="n">h_mag</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">));</span>
+<span class="n">v_r0</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="nb">dot</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="o">/</span> <span class="n">r0_mag</span><span class="p">;</span>
+
+<span class="c">% 2. Get eccentricity</span>
+<span class="n">theta_0</span> <span class="p">=</span> <span class="nb">atan</span><span class="p">(</span><span class="n">r0</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">r0</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="n">e</span> <span class="p">=</span> <span class="p">((</span><span class="n">h_mag</span>^<span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">r0_mag</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">cos</span><span class="p">(</span><span class="n">theta_0</span><span class="p">);</span>
+
+<span class="c">% 3. Get new distance</span>
+<span class="n">r_mag</span> <span class="p">=</span> <span class="p">(</span><span class="n">h_mag</span>^<span class="mi">2</span><span class="o">/</span><span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">((</span><span class="n">h_mag</span>^<span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">mu</span><span class="o">*</span><span class="n">r0_mag</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">h_mag</span><span class="o">*</span><span class="n">v_r0</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">)</span><span class="o">/</span><span class="n">mu</span><span class="p">);</span>
+
+<span class="c">% 4. Get Lagrange coefficients</span>
+<span class="n">f</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">r_mag</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">))</span> <span class="o">/</span> <span class="n">h_mag</span>^<span class="mi">2</span><span class="p">;</span>
+<span class="n">g</span> <span class="p">=</span> <span class="n">r_mag</span> <span class="o">*</span> <span class="n">r0_mag</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">)</span> <span class="o">/</span> <span class="n">h_mag</span><span class="p">;</span>
+<span class="n">fdot</span> <span class="p">=</span> <span class="p">(</span><span class="n">mu</span> <span class="o">/</span> <span class="n">h_mag</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">))</span><span class="o">*</span><span class="p">(</span> <span class="n">mu</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">))</span><span class="o">/</span><span class="n">h_mag</span>^<span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">r0_mag</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">r_mag</span><span class="p">))</span> <span class="o">/</span> <span class="nb">sin</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">);</span>
+<span class="n">gdot</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">r0_mag</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">))</span> <span class="o">/</span> <span class="n">h_mag</span>^<span class="mi">2</span><span class="p">;</span>
+
+<span class="c">% 5. Calculate new vectors:</span>
+<span class="n">r</span> <span class="p">=</span> <span class="n">f</span><span class="o">*</span><span class="n">r0</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">v0</span><span class="p">;</span>
+<span class="n">v</span> <span class="p">=</span> <span class="n">fdot</span><span class="o">*</span><span class="n">r0</span> <span class="o">+</span> <span class="n">gdot</span><span class="o">*</span><span class="n">v0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="58266582-50a6-4770-af0d-4ae8a07943de" name="043c4445-6e64-4c29-a4e8-97cceda96414" type="radio">
+</input><label class="tabbed-label" for="58266582-50a6-4770-af0d-4ae8a07943de">
+python</label><div class="tabbed-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">mu</span> <span class="o">=</span> <span class="mf">398.6e3</span> <span class="c1"># km^3/s^2</span>
+<span class="n">r0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">])</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">])</span>
+<span class="n">delta_theta</span> <span class="o">=</span> <span class="o">.</span>
+
+<span class="c1"># 1. Calculate magnitudes</span>
+<span class="n">r0_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">r0</span><span class="p">))</span>
+<span class="n">v0_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">v0</span><span class="p">)</span>
+<span class="n">h_mag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
+<span class="n">v_r0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">r0</span><span class="p">,</span> <span class="n">v0</span><span class="p">))</span> <span class="o">/</span> <span class="n">r0_mag</span>
+
+<span class="c1"># 2. Get eccentricity</span>
+<span class="n">theta_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">r0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">r0</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">e</span> <span class="o">=</span> <span class="p">((</span><span class="n">h_mag</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="n">r0_mag</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta_0</span><span class="p">)</span>
+
+<span class="c1"># 3. Get new distance</span>
+<span class="n">r_mag</span> <span class="o">=</span> <span class="p">(</span><span class="n">h_mag</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span>
+    <span class="mi">1</span> <span class="o">+</span> <span class="p">((</span><span class="n">h_mag</span><span class="o">^</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">mu</span><span class="o">*</span><span class="n">r0_mag</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">h_mag</span><span class="o">*</span><span class="n">v_r0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">)</span><span class="o">/</span><span class="n">mu</span>
+    <span class="p">)</span>
+
+<span class="c1"># 4. Get Lagrange coefficients</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">r_mag</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">))</span> <span class="o">/</span> <span class="n">h_mag</span><span class="o">^</span><span class="mi">2</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">r_mag</span> <span class="o">*</span> <span class="n">r0_mag</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">)</span> <span class="o">/</span> <span class="n">h_mag</span>
+<span class="n">fdot</span> <span class="o">=</span> <span class="p">(</span><span class="n">mu</span> <span class="o">/</span> <span class="n">h_mag</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">))</span><span class="o">*</span><span class="p">(</span>
+    <span class="n">mu</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">))</span><span class="o">/</span><span class="n">h_mag</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">r0_mag</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">r_mag</span><span class="p">)</span>
+    <span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">)</span>
+<span class="n">gdot</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mu</span><span class="o">*</span><span class="n">r0_mag</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">delta_theta</span><span class="p">))</span> <span class="o">/</span> <span class="n">h_mag</span><span class="o">^</span><span class="mi">2</span>
+
+<span class="c1"># 5. Calculate new vectors:</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">r0</span> <span class="o">+</span> <span class="n">g</span><span class="o">*</span><span class="n">v0</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">fdot</span><span class="o">*</span><span class="n">r0</span> <span class="o">+</span> <span class="n">gdot</span><span class="o">*</span><span class="n">v0</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
