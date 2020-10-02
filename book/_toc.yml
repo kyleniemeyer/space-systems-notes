@@ -1,4 +1,5 @@
 - file: intro
 - part: Orbital Mechanics
   chapters:
-    - file: orbital-mechanics/conic-sections.ipynb
+    - file: orbital-mechanics/conic-sections
+    - file: orbital-mechanics/two-body-problems
