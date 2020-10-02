@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to orbital mechanics: conic sections &#8212; Space Systems Engineering notes</title>
+    <title>Two-body problems &#8212; Space Systems Engineering notes</title>
     
   <link rel="stylesheet" href="../_static/css/index.d431a4ee1c1efae0e38bdfebc22debff.css">
 
@@ -57,8 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Two-body problems" href="two-body-problems.html" />
-    <link rel="prev" title="Space Systems Engineering Notes" href="../intro.html" />
+    <link rel="prev" title="Introduction to orbital mechanics: conic sections" href="conic-sections.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -104,13 +103,13 @@
  </span>
 </p>
 <ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="conic-sections.html">
    Introduction to orbital mechanics: conic sections
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="two-body-problems.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Two-body problems
   </a>
  </li>
@@ -156,7 +155,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/orbital-mechanics/conic-sections.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/orbital-mechanics/two-body-problems.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -176,10 +175,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/kyleniemeyer/space-systems-notes/issues/new?title=Issue%20on%20page%20%2Forbital-mechanics/conic-sections.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/kyleniemeyer/space-systems-notes/issues/new?title=Issue%20on%20page%20%2Forbital-mechanics/two-body-problems.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/kyleniemeyer/space-systems-notes/edit/main/orbital-mechanics/conic-sections.ipynb"><button
+        <a class="edit-button" href="https://github.com/kyleniemeyer/space-systems-notes/edit/main/orbital-mechanics/two-body-problems.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -198,7 +197,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/kyleniemeyer/space-systems-notes/main?urlpath=tree/orbital-mechanics/conic-sections.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kyleniemeyer/space-systems-notes/main?urlpath=tree/orbital-mechanics/two-body-problems.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -206,7 +205,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/kyleniemeyer/space-systems-notes/blob/main/orbital-mechanics/conic-sections.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/kyleniemeyer/space-systems-notes/blob/main/orbital-mechanics/two-body-problems.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -226,8 +225,20 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#orbital-equation-of-motion">
-   Orbital equation of motion
+  <a class="reference internal nav-link" href="#two-body-problems-in-perifocal-frame">
+   Two-body problems in perifocal frame
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lagrange-coefficients">
+     Lagrange coefficients
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-workflow">
+   Example workflow
   </a>
  </li>
 </ul>
@@ -241,17 +252,14 @@
         
               <div>
                 
-  <div class="section" id="introduction-to-orbital-mechanics-conic-sections">
-<h1>Introduction to orbital mechanics: conic sections<a class="headerlink" href="#introduction-to-orbital-mechanics-conic-sections" title="Permalink to this headline">¶</a></h1>
-<p>Orbital mechanics refers to the study of motion due to the gravitational influence of one mass over another.
-To start, we’ll focus on unperturbed orbits mostly of satellites around Earth, meaning orbits that result
-only from the force of gravity from a larger body, and without the influence of</p>
-<ul class="simple">
-<li><p>thrust forces</p></li>
-<li><p>gravitational perturbations</p></li>
-<li><p>irregularities in the Earth’s radius</p></li>
-</ul>
-<p>To determine what orbits are possible, we need to derive the orbital equation of motion.</p>
+  <div class="section" id="two-body-problems">
+<h1>Two-body problems<a class="headerlink" href="#two-body-problems" title="Permalink to this headline">¶</a></h1>
+<p>This module covers solution methods for two-body problems in the <strong>perifocal frame</strong>:
+given some information about an orbit, how can we find the new position and velocity
+after some change in true anomaly or after some time?</p>
+<p>This will cover two-body problem solutions using Lagrange coefficients,
+Kepler problems (involving time), the Kepler problem with universal variables,
+and solving the orbital equation of motion numerically from initial conditions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -272,21 +280,74 @@ only from the force of gravity from a larger body, and without the influence of<
 </div>
 </div>
 </div>
-<div class="section" id="orbital-equation-of-motion">
-<h2>Orbital equation of motion<a class="headerlink" href="#orbital-equation-of-motion" title="Permalink to this headline">¶</a></h2>
-<p>For now, we will focus on orbital problems involving two bodies (i.e., the two-body problem), with two
-different masses, usually where one is much larger than the other, such as a satellite orbiting the Earth.</p>
-<p>We will also focus on orbital motion in the two-dimensional <strong>perifocal frame</strong>, where all motion remains
-in the same two-dimensional plane with the two masses.</p>
-<p><span class="math notranslate nohighlight">\(\vec{R_1}\)</span> and <span class="math notranslate nohighlight">\(\vec{R_2}\)</span> are the position vectors for masses <span class="math notranslate nohighlight">\(M_1\)</span> and <span class="math notranslate nohighlight">\(M_2\)</span>, respectively, from some absolute
-frame of reference, and then we can define the relative position vector from <span class="math notranslate nohighlight">\(M_1\)</span> to <span class="math notranslate nohighlight">\(M_2\)</span> as <span class="math notranslate nohighlight">\(\vec{r} = \vec{R_2} - \vec{R_1}\)</span>.</p>
-<p>These masses act on each other via the force of gravity—this is reciprocal, in that each mass acts on the other.
-Newton’s gravitational law states that this force is</p>
+<div class="section" id="two-body-problems-in-perifocal-frame">
+<h2>Two-body problems in perifocal frame<a class="headerlink" href="#two-body-problems-in-perifocal-frame" title="Permalink to this headline">¶</a></h2>
+<p><strong>The problem:</strong> given the initial position vector <span class="math notranslate nohighlight">\(\vec{r}_0\)</span> and initial velocity vector <span class="math notranslate nohighlight">\(\vec{v}_0\)</span> (the state vectors),
+known at some instant in time, find the new state vectors <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span> after the true anomaly changes by <span class="math notranslate nohighlight">\(\Delta \theta\)</span>.</p>
+<div class="myclass figure align-default" id="fig-twobody">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/two-body-problem.png"><img alt="Two-body problem diagram" class="bg-primary mb-1" src="../_images/two-body-problem.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Diagram of two-body problem with state vectors.</span><a class="headerlink" href="#fig-twobody" title="Permalink to this image">¶</a></p>
+</div>
+<p>Since the state vectors <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span> will always remain in the same two-dimensional plane,
+they must be able to be expressed as linear combinations of
+<span class="math notranslate nohighlight">\(\vec{r}_0\)</span> and <span class="math notranslate nohighlight">\(\vec{v}_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{r} &amp;= f \vec{r}_0 + g \vec{v}_0 \\
+\vec{v} &amp;= \dot{f} \vec{r}_0 + \dot{g} \vec{v}_0 \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(f, g, \dot{f}, \dot{g}\)</span> are the <strong>Lagrange coefficients</strong>, which are constant scalars.</p>
+<p>Note that by substituting these into the definition of specific angular momentum <span class="math notranslate nohighlight">\(\vec{h}\)</span>,
+which must remain constant, we can obtain the <strong>Lagrange identity</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{h} = \vec{r}_0 \times \vec{v}_0 &amp;= \vec{r} \times \vec{v} \\
+&amp;= \left( f \vec{r}_0 + g \vec{v}_0 \right) \times \left( \dot{f} \vec{r}_0 + \dot{g} \vec{v}_0 \right) \\
+&amp;= f \dot{f} \vec{r}_0 \times \vec{r}_0 + f \dot{g} \vec{r}_0 \times \vec{v}_0 + g \dot{f} \vec{v}_0 \times \vec{r}_0 + g \dot{g} \vec{v}_0 \times \vec{v}_0 \\
+&amp;= f \dot{g} \vec{r}_0 \times \vec{v}_0 + g \dot{f} \vec{v}_0 \times \vec{r}_0 \\
+&amp;= f \dot{g} \vec{r}_0 \times \vec{v}_0 - g \dot{f} \vec{r}_0 \times \vec{v}_0 \\
+\vec{r}_0 \times \vec{v}_0 &amp;= \left( f \dot{g} - g \dot{f} \right) \vec{r}_0 \times \vec{v}_0 \\
+\therefore f \dot{g} - g \dot{f} &amp;= 1 \;,
+\end{align}
+\end{split}\]</div>
+<p>which provides a potentially helpful relationship between the coefficients—given three of them, you can easily find the fourth.</p>
+<div class="section" id="lagrange-coefficients">
+<h3>Lagrange coefficients<a class="headerlink" href="#lagrange-coefficients" title="Permalink to this headline">¶</a></h3>
+<p>Via a complicated derivation, we can find closed-form expressions for the Lagrange coefficients:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+f &amp;= 1 - \frac{\mu r}{h^2} \left( 1 - \cos \Delta \theta \right) \\
+g &amp;= \frac{r r_0}{h} \sin \Delta \theta \\
+\dot{f} &amp;= \frac{\mu}{h} \frac{1 - \cos \Delta \theta}{\sin \Delta \theta} \left[ \frac{\mu}{h^2} \left( 1 - \cos \Delta \theta \right) - \frac{1}{r_0} - \frac{1}{r} \right] \\
+\dot{g} &amp;= 1 - \frac{\mu r_0}{h^2} \left( 1 - \cos \Delta \theta \right) \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r_0 = |\vec{r}_0| = \sqrt{\vec{r}_0 \cdot \vec{r}_0}\)</span> is the magnitude of the initial position vector,
+<span class="math notranslate nohighlight">\(v_0 = |\vec{v}_0| = \sqrt{\vec{v}_0 \cdot \vec{v}_0}\)</span> is the magnitude of the initial velocity vector,
+<span class="math notranslate nohighlight">\(v_{r0} = \vec{r}_0 \cdot \vec{v}_0 / r_0\)</span> is the radial component of the initial velocity vector (the projection along the apse line),
+<span class="math notranslate nohighlight">\(h = |\vec{h}|\)</span> is the magnitude of the specific angular momentum,
+and the new radial distance is</p>
 <div class="math notranslate nohighlight">
 \[
-F_{12} = G \frac{m_1 m_2}{r^2} = -F_{21} \;,
+r = \frac{h^2}{\mu} \frac{1}{1 + \left( \frac{h^2}{\mu r_0} - 1 \right) \cos \Delta \theta - \frac{h v_{r0}}{\mu} \sin \Delta \theta} \;.
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(r^2 = | \vec{r} |\)</span> and <span class="math notranslate nohighlight">\(G = 6.674 \cdot 10^{-11}\)</span> m<sup>3</sup>/(kg s<sup>2</sup>), the universal gravitational constant.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While examples may show elliptical orbits, this approach applies regardless of orbit.</p>
+</div>
+<p>With these equations, we can now solve the problem.</p>
+</div>
+</div>
+<div class="section" id="example-workflow">
+<h2>Example workflow<a class="headerlink" href="#example-workflow" title="Permalink to this headline">¶</a></h2>
+<p>The workflow for solving a problem follows these steps:</p>
+<ol class="simple">
+<li><p>Calculate the magnitudes and necessary quantities:</p></li>
+</ol>
 </div>
 </div>
 
@@ -318,8 +379,7 @@ F_{12} = G \frac{m_1 m_2}{r^2} = -F_{21} \;,
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">Space Systems Engineering Notes</a>
-    <a class='right-next' id="next-link" href="two-body-problems.html" title="next page">Two-body problems</a>
+    <a class='left-prev' id="prev-link" href="conic-sections.html" title="previous page">Introduction to orbital mechanics: conic sections</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
