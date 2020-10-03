@@ -263,6 +263,11 @@
    Universal variable approach
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solve-equation-of-motion-numerically">
+   Solve equation of motion numerically
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -401,8 +406,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b15e6cce-b249-49fe-9c05-c1b5d8f6a3ec" name="3210e67d-d37f-430a-99eb-63c7f15d6dea" type="radio">
-</input><label class="tabbed-label" for="b15e6cce-b249-49fe-9c05-c1b5d8f6a3ec">
+<input checked="checked" id="30f007b9-9b31-412b-a862-9193d5c6261a" name="c63f88ed-9e15-4461-9411-345e40642f41" type="radio">
+</input><label class="tabbed-label" for="30f007b9-9b31-412b-a862-9193d5c6261a">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -436,8 +441,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="ade9e2ad-5745-42aa-8777-7eff6b965d86" name="3210e67d-d37f-430a-99eb-63c7f15d6dea" type="radio">
-</input><label class="tabbed-label" for="ade9e2ad-5745-42aa-8777-7eff6b965d86">
+<input id="3218f2e7-ceaf-448f-acb0-fd321ec8c329" name="c63f88ed-9e15-4461-9411-345e40642f41" type="radio">
+</input><label class="tabbed-label" for="3218f2e7-ceaf-448f-acb0-fd321ec8c329">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -584,8 +589,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="8bec25ac-427d-48ae-905b-0fadce77c6a7" name="e6188e4f-5aa6-481b-ab70-efcded6bf89d" type="radio">
-</input><label class="tabbed-label" for="8bec25ac-427d-48ae-905b-0fadce77c6a7">
+<input checked="checked" id="e5c91dea-5555-4771-9224-0b3d82db3110" name="c25db7d0-3bc9-4aea-b7bc-651cced37808" type="radio">
+</input><label class="tabbed-label" for="e5c91dea-5555-4771-9224-0b3d82db3110">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -597,8 +602,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="b38ff1d5-16f5-40d6-bc6f-e7a216f319c7" name="e6188e4f-5aa6-481b-ab70-efcded6bf89d" type="radio">
-</input><label class="tabbed-label" for="b38ff1d5-16f5-40d6-bc6f-e7a216f319c7">
+<input id="f9fe46d0-0eee-44d7-92fa-7230665c233c" name="c25db7d0-3bc9-4aea-b7bc-651cced37808" type="radio">
+</input><label class="tabbed-label" for="f9fe46d0-0eee-44d7-92fa-7230665c233c">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -650,6 +655,140 @@ find the new state vectors <span class="math notranslate nohighlight">\(\vec{r}\
 \[
 \sqrt{\mu} \Delta t = \frac{r_0 v_{r0}}{\sqrt{\mu}} \chi^2 C \left( \alpha \chi^2 \right) + (1 - \alpha r_0) \chi^3 S \left( \alpha \chi^2 \right) + r_0 \chi \;,
 \]</div>
+<p>which is a highly nonlinear transcendental equation, where
+<span class="math notranslate nohighlight">\(\alpha = \frac{1}{a} = \frac{2}{r_0} - \frac{v_0^2}{\mu}\)</span>.
+But, this is solveable via iterative methods!</p>
+<p>However, as above, we need a good first guess to help the solvers converge,
+and we also need to define the functions <span class="math notranslate nohighlight">\(C()\)</span> and <span class="math notranslate nohighlight">\(S()\)</span>.</p>
+<ol>
+<li><p>First, we can get a first guess for <span class="math notranslate nohighlight">\(\chi\)</span> using the <strong>Chobotov approximation</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+   \chi_0 = \frac{\sqrt{\mu}}{|a|} \Delta t \;.
+   \]</div>
+</li>
+<li><p>Then, we need to define the <strong>Stumpff functions</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   C(z) &amp;= \frac{\cosh \left(\sqrt{-z}\right) - 1}{-z} \\
+   S(z) &amp;= \left\lvert \frac{ \sinh \left(\sqrt{-z}\right) - \sqrt{-z}}{ \left(\sqrt{-z}\right)^3 } \right\rvert \;,
+   \end{align}
+   \end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(z = \alpha \chi^2\)</span>. Take care to include the absolute value when evaluating <span class="math notranslate nohighlight">\(S(z)\)</span>, which must be positive.</p>
+</li>
+<li><p>Then, solve iteratively for <span class="math notranslate nohighlight">\(\chi\)</span>, using (for example) <code class="docutils literal notranslate"><span class="pre">fzero()</span></code> in Matlab or <code class="docutils literal notranslate"><span class="pre">scipy.optimize.root_scalar()</span></code> in Python.</p></li>
+<li><p>Once you obtain <span class="math notranslate nohighlight">\(\chi\)</span>, you can solve for the Lagrange coefficients <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> with the <strong>universal Lagrange equations</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   f &amp;= 1 - \frac{\chi^2}{r_0} C \left( \alpha \chi^2 \right) \\
+   g &amp;= \Delta t - \frac{1}{\sqrt{\mu}} \chi^3 S \left( \alpha \chi^2 \right) \;.
+   \end{align}
+   \end{split}\]</div>
+<p>Then, calculate the new position vector: <span class="math notranslate nohighlight">\(\vec{r} = f \vec{r}_0 + g \vec{g}_0\)</span>.</p>
+</li>
+<li><p>Calculate the magnitude of <span class="math notranslate nohighlight">\(\vec{r}\)</span>: <span class="math notranslate nohighlight">\(|\vec{r}|\)</span>.</p></li>
+<li><p>Then, we can get <span class="math notranslate nohighlight">\(\dot{f}\)</span> and <span class="math notranslate nohighlight">\(\dot{g}\)</span> to find the velocity vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   \dot{f} &amp;= \frac{\sqrt{\mu}}{r r_0} \left[ \alpha \chi^3 S \left( \alpha \chi^2 \right) - \chi \right] \\
+   \dot{g} &amp;= 1 - \frac{\chi^2}{r} C \left( \alpha \chi^2 \right) \\
+   \vec{v} &amp;= \dot{f} \vec{r}_0 + \dot{g} \vec{v}_0 \;.
+   \end{align}
+   \end{split}\]</div>
+</li>
+</ol>
+</div>
+<div class="section" id="solve-equation-of-motion-numerically">
+<h2>Solve equation of motion numerically<a class="headerlink" href="#solve-equation-of-motion-numerically" title="Permalink to this headline">¶</a></h2>
+<p>An alternate strategy for finding the position and velocity of an orbiting body after some time of flight, given the initial position and velocity, is to numerically integrate the orbital equation of motion:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{ \ddot{r} } + \frac{\mu}{r^3} \vec{r} = 0 \;,
+\]</div>
+<p>based on initial conditions <span class="math notranslate nohighlight">\(\vec{r}_0\)</span> and <span class="math notranslate nohighlight">\(\vec{v}_0\)</span> defined at an initial time <span class="math notranslate nohighlight">\(t_0\)</span>.
+Integrating this forward in time would give us the position as a function of time:
+<span class="math notranslate nohighlight">\(x(t)\)</span>, <span class="math notranslate nohighlight">\(y(t)\)</span>, and <span class="math notranslate nohighlight">\(z(t)\)</span>.</p>
+<p>If you recall the methods for integrating second-order ordinary differential equations (ODEs),
+we can solve this by decomposing it into six first-order ODEs:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+z_1 &amp;= x \rightarrow \dot{z}_1 = z_4 \\
+z_2 &amp;= y \rightarrow \dot{z}_2 = z_5 \\
+z_3 &amp;= z \rightarrow \dot{z}_3 = z_6 \\
+z_4 &amp;= \dot{x} \rightarrow \dot{z}_4 = \ddot{x} = -\frac{\mu}{r^3} z_1 \\
+z_5 &amp;= \dot{y} \rightarrow \dot{z}_5 = \ddot{y} = -\frac{\mu}{r^3} z_2 \\
+z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
+\end{align}
+\end{split}\]</div>
+<p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
+<p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="7bde5955-e1c8-4ca8-9418-4fb3f2920927" name="333a78f5-b0fa-4347-b65c-b877546dbf0b" type="radio">
+</input><label class="tabbed-label" for="7bde5955-e1c8-4ca8-9418-4fb3f2920927">
+matlab</label><div class="tabbed-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
+
+<span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
+<span class="n">v0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
+<span class="n">T</span> <span class="p">=</span> <span class="p">.;</span>
+
+<span class="n">options</span> <span class="p">=</span> <span class="n">odeset</span><span class="p">(</span><span class="s">&#39;RelTol&#39;</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">);</span>
+
+<span class="p">[</span><span class="n">T</span><span class="p">,</span> <span class="n">Z</span><span class="p">]</span> <span class="p">=</span> <span class="n">ode45</span><span class="p">(</span><span class="s">&#39;rhs&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">],</span> <span class="p">[</span><span class="n">r0</span><span class="p">,</span> <span class="n">v0</span><span class="p">],</span> <span class="n">options</span><span class="p">);</span>
+<span class="n">plot3</span><span class="p">(</span><span class="n">Z</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span> <span class="n">Z</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span> <span class="n">Z</span><span class="p">(:,</span><span class="mi">3</span><span class="p">));</span>
+
+<span class="c">% function for ODE system</span>
+<span class="k">function</span><span class="w"> </span>dzdt <span class="p">=</span><span class="w"> </span><span class="nf">rhs</span><span class="p">(</span>t, z<span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
+  <span class="n">r</span> <span class="p">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">z</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>^<span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>^<span class="mi">3</span><span class="p">);</span>
+  <span class="n">dzdt</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">dzdt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+  <span class="n">dzdt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+  <span class="n">dzdt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">=</span> <span class="n">z</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+  <span class="n">dzdt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">mu</span><span class="o">/</span><span class="n">r</span>^<span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">dzdt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">mu</span><span class="o">/</span><span class="n">r</span>^<span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="n">dzdt</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="o">-</span><span class="n">mu</span><span class="o">/</span><span class="n">r</span>^<span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</div>
+<input id="d4af28b3-d80b-4d7e-ba5f-d55019d9616c" name="333a78f5-b0fa-4347-b65c-b877546dbf0b" type="radio">
+</input><label class="tabbed-label" for="d4af28b3-d80b-4d7e-ba5f-d55019d9616c">
+python</label><div class="tabbed-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">rhs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="c1"># 3D orbital motion ODE</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="mf">398.6e3</span> <span class="c1"># km^3/s^2</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">dzdt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">dzdt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">dzdt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">dzdt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">dzdt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">mu</span><span class="o">/</span><span class="n">r</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dzdt</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">mu</span><span class="o">/</span><span class="n">r</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dzdt</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">mu</span><span class="o">/</span><span class="n">r</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dzdt</span>
+    
+<span class="n">r0</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">]</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">]</span>
+<span class="n">T</span> <span class="o">=</span> <span class="o">.</span>
+
+<span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">T</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r0</span> <span class="o">+</span> <span class="n">v0</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot3D</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mf">2.</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
