@@ -241,6 +241,28 @@
    Example workflow
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kepler-problems">
+   Kepler problems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-find-time-of-flight">
+     Example: find time of flight
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-find-change-in-true-anomaly">
+   Example: find change in true anomaly
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#universal-variable-approach">
+   Universal variable approach
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -315,7 +337,7 @@ which must remain constant, we can obtain the <strong>Lagrange identity</strong>
 \end{split}\]</div>
 <p>which provides a potentially helpful relationship between the coefficients—given three of them, you can easily find the fourth.</p>
 <div class="section" id="lagrange-coefficients">
-<h3>Lagrange coefficients<a class="headerlink" href="#lagrange-coefficients" title="Permalink to this headline">¶</a></h3>
+<span id="sec-lagrange"></span><h3>Lagrange coefficients<a class="headerlink" href="#lagrange-coefficients" title="Permalink to this headline">¶</a></h3>
 <p>Via a complicated derivation, we can find closed-form expressions for the Lagrange coefficients:</p>
 <div class="math notranslate nohighlight" id="equation-lagrange">
 <span class="eqno">(1)<a class="headerlink" href="#equation-lagrange" title="Permalink to this equation">¶</a></span>\[\begin{split}
@@ -345,42 +367,42 @@ r = \frac{h^2}{\mu} \frac{1}{1 + \left( \frac{h^2}{\mu r_0} - 1 \right) \cos \De
 <div class="section" id="example-workflow">
 <h2>Example workflow<a class="headerlink" href="#example-workflow" title="Permalink to this headline">¶</a></h2>
 <p>The workflow for solving a problem follows these steps:</p>
-<ol class="simple">
+<ol>
 <li><p>Calculate the magnitudes and necessary quantities: <span class="math notranslate nohighlight">\(r_0 = |\vec{r}_0|\)</span>, <span class="math notranslate nohighlight">\(v_0 = |\vec{v}_0|\)</span>,
 <span class="math notranslate nohighlight">\(\vec{h} = \vec{r} \times \vec{v}\)</span>, <span class="math notranslate nohighlight">\(h = |\vec{h}|\)</span>, and <span class="math notranslate nohighlight">\(v_{r0} = \frac{ \vec{r}_0 \cdot \vec{v}_0 }{ |r_0| }\)</span>.</p></li>
-<li><p>An optional step is to determine the initial true anomaly, and from that the eccentricity of the orbit <span class="math notranslate nohighlight">\(e\)</span>
-(which would tell us what kind of orbit this is):</p></li>
-</ol>
+<li><p>An optional step is to determine the initial true anomaly, and from
+that the eccentricity of the orbit <span class="math notranslate nohighlight">\(e\)</span> (which would tell us what
+kind of orbit this is):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align}
-\theta_0 &amp;= \tan^{-1} \left( \frac{r_{0y}}{r_{0x}} \right) \\
-r_0 &amp;= \frac{h^2 / \mu}{1 + e \cos \theta_0 } \\
-\rightarrow e &amp;= \left( \frac{h^2 / \mu}{r_0} - 1 \right) / \cos \theta_0
-\end{align}
-\end{split}\]</div>
-<ol class="simple">
-<li><p>Calculate the new radial distance:</p></li>
-</ol>
+   \begin{align}
+   \theta_0 &amp;= \tan^{-1} \left( \frac{r_{0y}}{r_{0x}} \right) \\
+   r_0 &amp;= \frac{h^2 / \mu}{1 + e \cos \theta_0 } \\
+   \rightarrow e &amp;= \left( \frac{h^2 / \mu}{r_0} - 1 \right) / \cos \theta_0
+   \end{align}
+   \end{split}\]</div>
+</li>
+<li><p>Calculate the new radial distance:</p>
 <div class="math notranslate nohighlight">
 \[
- r = \frac{h^2}{\mu} \frac{1}{1 + \left( \frac{h^2}{\mu r_0} - 1 \right) \cos \Delta \theta - \frac{h v_{r0}}{\mu} \sin \Delta \theta }
-\]</div>
-<ol class="simple">
+   r = \frac{h^2}{\mu} \frac{1}{1 + \left( \frac{h^2}{\mu r_0} - 1 \right) \cos \Delta \theta - \frac{h v_{r0}}{\mu} \sin \Delta \theta }
+   \]</div>
+</li>
 <li><p>Calculate the Lagrange coefficients <span class="math notranslate nohighlight">\(f, g, \dot{f}, \dot{g}\)</span>, using Equation <a class="reference internal" href="#equation-lagrange">(1)</a>.</p></li>
-<li><p>Finally, calculate the new position and velocity vectors:</p></li>
-</ol>
+<li><p>Finally, calculate the new position and velocity vectors:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{align}
-\vec{r} &amp;= f \vec{r}_0 + g \vec{v}_0 \\
-\vec{v} &amp;= \dot{f} \vec{r}_0 + \dot{g} \vec{v}_0
-\end{align}
-\end{split}\]</div>
+   \begin{align}
+   \vec{r} &amp;= f \vec{r}_0 + g \vec{v}_0 \\
+   \vec{v} &amp;= \dot{f} \vec{r}_0 + \dot{g} \vec{v}_0
+   \end{align}
+   \end{split}\]</div>
+</li>
+</ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f6f4bb9e-04ff-447f-998d-0d9a7149e6a7" name="043c4445-6e64-4c29-a4e8-97cceda96414" type="radio">
-</input><label class="tabbed-label" for="f6f4bb9e-04ff-447f-998d-0d9a7149e6a7">
+<input checked="checked" id="b15e6cce-b249-49fe-9c05-c1b5d8f6a3ec" name="3210e67d-d37f-430a-99eb-63c7f15d6dea" type="radio">
+</input><label class="tabbed-label" for="b15e6cce-b249-49fe-9c05-c1b5d8f6a3ec">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -414,8 +436,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="58266582-50a6-4770-af0d-4ae8a07943de" name="043c4445-6e64-4c29-a4e8-97cceda96414" type="radio">
-</input><label class="tabbed-label" for="58266582-50a6-4770-af0d-4ae8a07943de">
+<input id="ade9e2ad-5745-42aa-8777-7eff6b965d86" name="3210e67d-d37f-430a-99eb-63c7f15d6dea" type="radio">
+</input><label class="tabbed-label" for="ade9e2ad-5745-42aa-8777-7eff6b965d86">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -456,6 +478,178 @@ python</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="kepler-problems">
+<h2>Kepler problems<a class="headerlink" href="#kepler-problems" title="Permalink to this headline">¶</a></h2>
+<p>Kepler problems are two-body problems that involve time:
+find the time of flight given information about an orbit and a change in true anomaly,
+or find the change in true anomaly (and new state vectors) given a time of flight.</p>
+<div class="section" id="example-find-time-of-flight">
+<h3>Example: find time of flight<a class="headerlink" href="#example-find-time-of-flight" title="Permalink to this headline">¶</a></h3>
+<p><strong>The problem:</strong> Given the orbital eccentricity <span class="math notranslate nohighlight">\(e\)</span>, the initial position vector
+<span class="math notranslate nohighlight">\(\vec{r} = \vec{r}_p\)</span> (the position starts at perigee), and the change in
+true anomaly <span class="math notranslate nohighlight">\(\Delta \theta\)</span>, find the time of flight <span class="math notranslate nohighlight">\(\Delta t\)</span>.
+(The solution procedure does not depend on the initial position being at perigee,
+this is just to simplify things a bit.)</p>
+<div class="myclass figure align-default" id="fig-kepler-time">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/kepler-problem-time.png"><img alt="Kepler problem for time of flight" class="bg-primary mb-1" src="../_images/kepler-problem-time.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Diagram of Kepler problem for finding time of flight.</span><a class="headerlink" href="#fig-kepler-time" title="Permalink to this image">¶</a></p>
+</div>
+<p>This problem requires a different approach. We can relate the transverse/angular
+component of velocity to the change in true anomaly:</p>
+<div class="math notranslate nohighlight" id="equation-kepler-integral">
+<span class="eqno">(2)<a class="headerlink" href="#equation-kepler-integral" title="Permalink to this equation">¶</a></span>\[\begin{split}
+\begin{align}
+V_{\theta} = \frac{h}{r} &amp;= r \dot{\theta} = r \frac{d\theta}{dt} \\
+r^2 \, d\theta &amp;= h \, dt \\
+\text{but } r &amp;= \frac{h^2 / \mu}{1 + e \cos \theta} \\
+\rightarrow \left( \frac{h^2 / \mu}{1 + e \cos \theta} \right)^2 d\theta &amp;= h \, dt \\
+\int_{\theta_0 = 0}^{\theta = \Delta \theta} \left( \frac{1}{1 + e \cos \theta} \right)^2 d\theta &amp;= \int_0^t \frac{\mu^2}{h^3} dt \\
+\end{align}
+\end{split}\]</div>
+<p>This is the <strong>Kepler integral</strong>, and it has a closed-form solution!
+(Fortunately, the bounds of the integral do not matter—just the <span class="math notranslate nohighlight">\(\Delta \theta\)</span>.)</p>
+<p>However, depending on the value of eccentricity <span class="math notranslate nohighlight">\(e\)</span>, the solution takes on different forms.
+So this approach depends on knowing eccentricity! We will cover a more-general method that
+does not require this information soon.</p>
+<p>For an elliptic orbit, the solution to the Kepler integral is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\frac{2 \pi}{T} t &amp;= M_e = E - e \sin E \\
+\tan \frac{E}{2} &amp;= \sqrt{\frac{1-e}{1+e}} \tan \frac{\Delta \theta}{2} \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the period of an elliptical orbit,
+<span class="math notranslate nohighlight">\(E\)</span> is the eccentric anomaly (which <em>must</em> be in radians), and
+<span class="math notranslate nohighlight">\(M_e\)</span> is the mean anomaly.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure you use the correct form of the equations based on the value of eccentricity!
+And make sure your anomaly values are in <strong>radians</strong>!</p>
+</div>
+<p>The solution procedure for solving this problem is then:</p>
+<ol>
+<li><p>Calculate the magnitude of specific angular momentum <span class="math notranslate nohighlight">\(h\)</span> using the known perigee distance:</p>
+<div class="math notranslate nohighlight">
+\[
+   r_p = \frac{h^2 / \mu}{1 + e} \rightarrow h
+   \]</div>
+</li>
+<li><p>Calculate the apogee distance, and then use this to get the semi-major axis:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   r_a &amp;= \frac{h^2 / \mu}{1 - e} \\
+   a &amp;= \frac{r_p + r_a}{2}
+   \end{align}
+   \end{split}\]</div>
+</li>
+<li><p>For an elliptic orbit, calculate the period:</p>
+<div class="math notranslate nohighlight">
+\[
+   T = \frac{2\pi}{\sqrt{\mu}} a^{3/2}
+   \]</div>
+</li>
+<li><p>Calculate the eccentric anomaly <span class="math notranslate nohighlight">\(E\)</span>, and then use this to get <span class="math notranslate nohighlight">\(t\)</span>.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="example-find-change-in-true-anomaly">
+<h2>Example: find change in true anomaly<a class="headerlink" href="#example-find-change-in-true-anomaly" title="Permalink to this headline">¶</a></h2>
+<p><strong>The problem:</strong> now, given the eccentricity <span class="math notranslate nohighlight">\(e\)</span>, initial position vector <span class="math notranslate nohighlight">\(\vec{r}=\vec{r}_p\)</span>,
+and the time of flight <span class="math notranslate nohighlight">\(\Delta t\)</span>, find the associated change in true anomaly <span class="math notranslate nohighlight">\(\Delta \theta\)</span>, and then the new state vectors (<span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span>).</p>
+<p>As we will quickly see, this problem is a bit trickier, but still solveable.</p>
+<p>The following solution steps for an <strong>elliptic</strong> orbit, since the equations only apply
+for this case, but the procedure will be the same for other orbits:</p>
+<ol>
+<li><p>Calculate the semi-major axis <span class="math notranslate nohighlight">\(a\)</span> and orbital period <span class="math notranslate nohighlight">\(T\)</span> using the perigee distance.</p></li>
+<li><p>Calculate the mean anomaly using the known time of flight:</p>
+<div class="math notranslate nohighlight">
+\[
+   M_e = \frac{2\pi}{T} t
+   \]</div>
+<p>Next, we need to to find the eccentric anomaly <span class="math notranslate nohighlight">\(E\)</span>, using the <span class="math notranslate nohighlight">\(M_e = E - e \sin E\)</span>,
+but this is a transcendental equation with no closed-form solution.
+So, we need to use an iterative solution procedure, for example using the
+<code class="docutils literal notranslate"><span class="pre">fzero()</span></code> function in Matlab or the <code class="docutils literal notranslate"><span class="pre">scipy.optimize.root_scalar()</span></code> function in Python
+(which requires <a class="reference external" href="https://www.scipy.org">SciPy</a>).
+Either way, we need a good initial guess, otherwise even these robust algorithms
+may not converge to the correct solution.</p>
+</li>
+<li><p>Use the <strong>Prussing estimate</strong> as a reasonable first guess for <span class="math notranslate nohighlight">\(E\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+   E_0 = M_e + \frac{e}{2} \;.
+   \]</div>
+<p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="8bec25ac-427d-48ae-905b-0fadce77c6a7" name="e6188e4f-5aa6-481b-ab70-efcded6bf89d" type="radio">
+</input><label class="tabbed-label" for="8bec25ac-427d-48ae-905b-0fadce77c6a7">
+matlab</label><div class="tabbed-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
+
+<span class="n">function</span> <span class="s">zero</span> <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+  <span class="n">M_e</span> <span class="p">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">T</span><span class="p">;</span>
+  <span class="n">zero</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">-</span> <span class="p">(</span><span class="n">E</span> <span class="o">-</span> <span class="n">e</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">E</span><span class="p">));</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</div>
+<input id="b38ff1d5-16f5-40d6-bc6f-e7a216f319c7" name="e6188e4f-5aa6-481b-ab70-efcded6bf89d" type="radio">
+</input><label class="tabbed-label" for="b38ff1d5-16f5-40d6-bc6f-e7a216f319c7">
+python</label><div class="tabbed-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
+
+<span class="k">def</span> <span class="nf">eccentric_anomaly</span><span class="p">(</span><span class="n">E</span><span class="p">):</span>
+    <span class="n">M_e</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">T</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">M_e</span> <span class="o">-</span> <span class="p">(</span><span class="n">E</span> <span class="o">-</span> <span class="n">e</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">E</span><span class="p">));</span>
+
+<span class="n">E0</span> <span class="o">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">eccentric_anomaly</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">E0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</li>
+<li><p>Use <span class="math notranslate nohighlight">\(E\)</span> to find the value of the change in true anomaly:</p>
+<div class="math notranslate nohighlight">
+\[
+   \tan \frac{\Delta \theta}{2} = \sqrt{\frac{1+e}{1-e}} \tan \frac{E}{2} \;.
+   \]</div>
+</li>
+<li><p>Then, with <span class="math notranslate nohighlight">\(\Delta \theta\)</span>, you can find the new state vectors by treating this like a two-body problem and using the <a class="reference internal" href="#sec-lagrange"><span class="std std-ref">Lagrange coefficients</span></a>. Since this example starts at perigee, we know the initial position and velocity vectors:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   \vec{r}_0 &amp;= \vec{r}_p = \left[ r_p, 0, 0 \right] \\
+   \vec{v}_0 &amp;= \left[ 0, \frac{h}{r_p}, 0 \right]
+   \end{align}
+   \end{split}\]</div>
+</li>
+</ol>
+</div>
+<div class="section" id="universal-variable-approach">
+<h2>Universal variable approach<a class="headerlink" href="#universal-variable-approach" title="Permalink to this headline">¶</a></h2>
+<p>The above approaches are all limited by the need to know the eccentricity of the orbit,
+which in general you would not know. The <strong>universal variable</strong> approach is a more-general
+approach that applies consistently regardless of orbital eccentricity.</p>
+<p><strong>The problem:</strong> Given initial position vector <span class="math notranslate nohighlight">\(\vec{r}_0\)</span>,
+initial velocity vector <span class="math notranslate nohighlight">\(\vec{v}_0\)</span>, and some time of flight <span class="math notranslate nohighlight">\(\Delta t\)</span>,
+find the new state vectors <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span>.</p>
+<p>This approach is based on the definition of the universal anomaly <span class="math notranslate nohighlight">\(\chi\)</span>, using:</p>
+<div class="math notranslate nohighlight">
+\[
+\dot{\chi} \equiv \frac{\sqrt{\mu}}{r} \;,
+\]</div>
+<p>known as the Sundmann transformation.</p>
+<p>Through a complicated derivation, this leads to the universal variable formulation of Kepler’s equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{\mu} \Delta t = \frac{r_0 v_{r0}}{\sqrt{\mu}} \chi^2 C \left( \alpha \chi^2 \right) + (1 - \alpha r_0) \chi^3 S \left( \alpha \chi^2 \right) + r_0 \chi \;,
+\]</div>
 </div>
 </div>
 
