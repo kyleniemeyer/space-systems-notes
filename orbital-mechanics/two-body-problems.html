@@ -362,7 +362,7 @@ which must remain constant, we can obtain the <strong>Lagrange identity</strong>
 <span id="sec-lagrange"></span><h3>Lagrange coefficients<a class="headerlink" href="#lagrange-coefficients" title="Permalink to this headline">¶</a></h3>
 <p>Via a complicated derivation, we can find closed-form expressions for the Lagrange coefficients:</p>
 <div class="math notranslate nohighlight" id="equation-lagrange">
-<span class="eqno">(1)<a class="headerlink" href="#equation-lagrange" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(3)<a class="headerlink" href="#equation-lagrange" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \begin{align}
 f &amp;= 1 - \frac{\mu r}{h^2} \left( 1 - \cos \Delta \theta \right) \\
 g &amp;= \frac{r r_0}{h} \sin \Delta \theta \\
@@ -410,7 +410,7 @@ kind of orbit this is):</p>
    r = \frac{h^2}{\mu} \frac{1}{1 + \left( \frac{h^2}{\mu r_0} - 1 \right) \cos \Delta \theta - \frac{h v_{r0}}{\mu} \sin \Delta \theta }
    \]</div>
 </li>
-<li><p>Calculate the Lagrange coefficients <span class="math notranslate nohighlight">\(f, g, \dot{f}, \dot{g}\)</span>, using Equation <a class="reference internal" href="#equation-lagrange">(1)</a>.</p></li>
+<li><p>Calculate the Lagrange coefficients <span class="math notranslate nohighlight">\(f, g, \dot{f}, \dot{g}\)</span>, using Equation <a class="reference internal" href="#equation-lagrange">(3)</a>.</p></li>
 <li><p>Finally, calculate the new position and velocity vectors:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -423,8 +423,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5eacadcc-defb-4758-8fe9-5a4bfafec021" name="6f33c6c4-2bc0-4230-9b03-e7fa496307e7" type="radio">
-</input><label class="tabbed-label" for="5eacadcc-defb-4758-8fe9-5a4bfafec021">
+<input checked="checked" id="953af260-0e19-441e-a607-360400c613c1" name="3e5d5dc7-42e5-4039-b083-f1fb2d1e8b60" type="radio">
+</input><label class="tabbed-label" for="953af260-0e19-441e-a607-360400c613c1">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -458,8 +458,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="0ae0a284-212a-4ee5-97aa-ac7a715e35a7" name="6f33c6c4-2bc0-4230-9b03-e7fa496307e7" type="radio">
-</input><label class="tabbed-label" for="0ae0a284-212a-4ee5-97aa-ac7a715e35a7">
+<input id="0fdbbbca-74d2-43e9-9e8c-eb79e09f3803" name="3e5d5dc7-42e5-4039-b083-f1fb2d1e8b60" type="radio">
+</input><label class="tabbed-label" for="0fdbbbca-74d2-43e9-9e8c-eb79e09f3803">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -520,7 +520,7 @@ this is just to simplify things a bit.)</p>
 <p>This problem requires a different approach. We can relate the transverse/angular
 component of velocity to the change in true anomaly:</p>
 <div class="math notranslate nohighlight" id="equation-kepler-integral">
-<span class="eqno">(2)<a class="headerlink" href="#equation-kepler-integral" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(4)<a class="headerlink" href="#equation-kepler-integral" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \begin{align}
 V_{\theta} = \frac{h}{r} &amp;= r \dot{\theta} = r \frac{d\theta}{dt} \\
 r^2 \, d\theta &amp;= h \, dt \\
@@ -606,8 +606,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b2e88da3-827e-4327-a102-02684cb2a97b" name="e32b055d-93bc-406a-9759-041a136c51cb" type="radio">
-</input><label class="tabbed-label" for="b2e88da3-827e-4327-a102-02684cb2a97b">
+<input checked="checked" id="69064b8d-8cb9-4a60-a5ec-581be500351e" name="e0f93342-0f31-4d32-8d9e-ee1a37421a82" type="radio">
+</input><label class="tabbed-label" for="69064b8d-8cb9-4a60-a5ec-581be500351e">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -619,8 +619,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f5c5b5be-33c0-4e90-9d71-8d8902f20ca6" name="e32b055d-93bc-406a-9759-041a136c51cb" type="radio">
-</input><label class="tabbed-label" for="f5c5b5be-33c0-4e90-9d71-8d8902f20ca6">
+<input id="3c6ea2ed-782a-412b-936e-ac6a849ee863" name="e0f93342-0f31-4d32-8d9e-ee1a37421a82" type="radio">
+</input><label class="tabbed-label" for="3c6ea2ed-782a-412b-936e-ac6a849ee863">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -744,8 +744,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="bcf8f93e-0910-44c7-90b2-b537e4a974c9" name="34770ae0-7024-4ae4-9da1-579ba23fd2e8" type="radio">
-</input><label class="tabbed-label" for="bcf8f93e-0910-44c7-90b2-b537e4a974c9">
+<input checked="checked" id="370856c3-3eb2-4e56-8899-d5967f75e0ca" name="5e91b029-ea87-4638-8834-695e096f30a8" type="radio">
+</input><label class="tabbed-label" for="370856c3-3eb2-4e56-8899-d5967f75e0ca">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -773,8 +773,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="73dc15dc-8582-4da3-870e-aa0783bf7a33" name="34770ae0-7024-4ae4-9da1-579ba23fd2e8" type="radio">
-</input><label class="tabbed-label" for="73dc15dc-8582-4da3-870e-aa0783bf7a33">
+<input id="e4f71e99-05a2-4ccd-9eb9-4f29f05fdb68" name="5e91b029-ea87-4638-8834-695e096f30a8" type="radio">
+</input><label class="tabbed-label" for="e4f71e99-05a2-4ccd-9eb9-4f29f05fdb68">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>

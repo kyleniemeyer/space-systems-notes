@@ -282,11 +282,39 @@ in the same two-dimensional plane with the two masses.</p>
 frame of reference, and then we can define the relative position vector from <span class="math notranslate nohighlight">\(M_1\)</span> to <span class="math notranslate nohighlight">\(M_2\)</span> as <span class="math notranslate nohighlight">\(\vec{r} = \vec{R_2} - \vec{R_1}\)</span>.</p>
 <p>These masses act on each other via the force of gravity—this is reciprocal, in that each mass acts on the other.
 Newton’s gravitational law states that this force is</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-newton">
+<span class="eqno">(1)<a class="headerlink" href="#equation-newton" title="Permalink to this equation">¶</a></span>\[
 F_{12} = G \frac{m_1 m_2}{r^2} = -F_{21} \;,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(r^2 = | \vec{r} |\)</span> and <span class="math notranslate nohighlight">\(G = 6.674 \cdot 10^{-11}\)</span> m<sup>3</sup>/(kg s<sup>2</sup>), the universal gravitational constant.</p>
+<p>If we take the time derivative of <span class="math notranslate nohighlight">\(\vec{r}\)</span> twice, we get the acceleration vector,
+and can substitute <span class="math notranslate nohighlight">\(\vec{F} = m \vec{a}\)</span> with Equation <a class="reference internal" href="#equation-newton">(1)</a>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{\ddot{r}} &amp;= \vec{\ddot{R}}_2 - \vec{\ddot{R}}_1 \\
+\vec{\ddot{r}} &amp;= -G \left( \frac{m_1 m_2}{r^2} \right) \left( \frac{1}{m_1} + \frac{1}{m_2} \right) \vec{u}_r \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{u}_r = \frac{\vec{r}}{|\vec{r}|}\)</span> is the unit direction vector.
+Since the masses involved, and gravitational constant, do not change for a given
+orbital system, we can simplify this by defining the <strong>gravitational parameter</strong> <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+G (m_1 + m_2) \approx G m_1 \equiv \mu \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(m_1\)</span> is the mass of the central body (e.g, Earth) and <span class="math notranslate nohighlight">\(m_2\)</span> is the mass of the orbiting body,
+and <span class="math notranslate nohighlight">\(m_2 \ll m_1\)</span>. For a given planetary orbit, this parameter does not change, and
+for an Earth-satellite system <span class="math notranslate nohighlight">\(\mu = 398,600 \, \text{km}^3/\text{s}^2\)</span>.</p>
+<p>Then, we can express the <strong>orbital equation of motion</strong> as</p>
+<div class="math notranslate nohighlight" id="equation-orbital-equation">
+<span class="eqno">(2)<a class="headerlink" href="#equation-orbital-equation" title="Permalink to this equation">¶</a></span>\[
+\vec{\ddot{r}} = -\frac{\mu}{r^3} \vec{r} \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(r = |\vec{r}| = \sqrt{r_x^2 + r_y^2 + r_z^2}\)</span> is the magnitude of the radial distance.
+This is a vector, nonlinear, second-order ordinary differential equation.
+We can solve this numerically by decomposing into a system of six first-order equations,
+but we can also study orbits in a two-dimensional plane.</p>
 </div>
 </div>
 
