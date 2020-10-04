@@ -268,6 +268,23 @@
    Solve equation of motion numerically
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary-of-kepler-s-equations">
+   Summary of Kepler’s equations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elliptic-orbit">
+     Elliptic orbit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hyperbolic-orbit">
+     Hyperbolic orbit
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
         </nav>
@@ -406,8 +423,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="30f007b9-9b31-412b-a862-9193d5c6261a" name="c63f88ed-9e15-4461-9411-345e40642f41" type="radio">
-</input><label class="tabbed-label" for="30f007b9-9b31-412b-a862-9193d5c6261a">
+<input checked="checked" id="5eacadcc-defb-4758-8fe9-5a4bfafec021" name="6f33c6c4-2bc0-4230-9b03-e7fa496307e7" type="radio">
+</input><label class="tabbed-label" for="5eacadcc-defb-4758-8fe9-5a4bfafec021">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -441,8 +458,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3218f2e7-ceaf-448f-acb0-fd321ec8c329" name="c63f88ed-9e15-4461-9411-345e40642f41" type="radio">
-</input><label class="tabbed-label" for="3218f2e7-ceaf-448f-acb0-fd321ec8c329">
+<input id="0ae0a284-212a-4ee5-97aa-ac7a715e35a7" name="6f33c6c4-2bc0-4230-9b03-e7fa496307e7" type="radio">
+</input><label class="tabbed-label" for="0ae0a284-212a-4ee5-97aa-ac7a715e35a7">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -589,8 +606,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e5c91dea-5555-4771-9224-0b3d82db3110" name="c25db7d0-3bc9-4aea-b7bc-651cced37808" type="radio">
-</input><label class="tabbed-label" for="e5c91dea-5555-4771-9224-0b3d82db3110">
+<input checked="checked" id="b2e88da3-827e-4327-a102-02684cb2a97b" name="e32b055d-93bc-406a-9759-041a136c51cb" type="radio">
+</input><label class="tabbed-label" for="b2e88da3-827e-4327-a102-02684cb2a97b">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -602,8 +619,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="f9fe46d0-0eee-44d7-92fa-7230665c233c" name="c25db7d0-3bc9-4aea-b7bc-651cced37808" type="radio">
-</input><label class="tabbed-label" for="f9fe46d0-0eee-44d7-92fa-7230665c233c">
+<input id="f5c5b5be-33c0-4e90-9d71-8d8902f20ca6" name="e32b055d-93bc-406a-9759-041a136c51cb" type="radio">
+</input><label class="tabbed-label" for="f5c5b5be-33c0-4e90-9d71-8d8902f20ca6">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -727,8 +744,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7bde5955-e1c8-4ca8-9418-4fb3f2920927" name="333a78f5-b0fa-4347-b65c-b877546dbf0b" type="radio">
-</input><label class="tabbed-label" for="7bde5955-e1c8-4ca8-9418-4fb3f2920927">
+<input checked="checked" id="bcf8f93e-0910-44c7-90b2-b537e4a974c9" name="34770ae0-7024-4ae4-9da1-579ba23fd2e8" type="radio">
+</input><label class="tabbed-label" for="bcf8f93e-0910-44c7-90b2-b537e4a974c9">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -756,8 +773,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d4af28b3-d80b-4d7e-ba5f-d55019d9616c" name="333a78f5-b0fa-4347-b65c-b877546dbf0b" type="radio">
-</input><label class="tabbed-label" for="d4af28b3-d80b-4d7e-ba5f-d55019d9616c">
+<input id="73dc15dc-8582-4da3-870e-aa0783bf7a33" name="34770ae0-7024-4ae4-9da1-579ba23fd2e8" type="radio">
+</input><label class="tabbed-label" for="73dc15dc-8582-4da3-870e-aa0783bf7a33">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -788,6 +805,46 @@ python</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="summary-of-kepler-s-equations">
+<h2>Summary of Kepler’s equations<a class="headerlink" href="#summary-of-kepler-s-equations" title="Permalink to this headline">¶</a></h2>
+<div class="myclass figure align-default" id="fig-anomaly">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/mean_anomaly.png"><img alt="Diagram of mean and eccentric anomaly" class="bg-primary mb-1" src="../_images/mean_anomaly.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Diagram showing the geometric meaning of the mean and eccentric anomaly.
+Original sources: <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Anomalies.PNG">PNG by Brews ohare</a>,
+<a class="reference external" href="https://commons.wikimedia.org/wiki/File:Mean_Anomaly.svg">SVG by CheCheDaWaff</a>.
+Shared under <a class="reference external" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA</a></span><a class="headerlink" href="#fig-anomaly" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="elliptic-orbit">
+<h3>Elliptic orbit<a class="headerlink" href="#elliptic-orbit" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+M_e &amp;= \frac{2 \pi}{T} t = \sqrt{\frac{\mu}{a^3}} t \\
+M_e &amp;= E - e \sin E \\
+\tan \frac{E}{2} &amp;= \sqrt{\frac{1-e}{1+e}} \tan \frac{\theta}{2} \\
+r &amp;= a \left( 1 - e \cos E \right) \\
+v^2 &amp;= \mu \left( \frac{2}{r} - \frac{1}{a} \right) \\
+r_p &amp;= a (1 - e) \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_e\)</span> is the mean anomaly and <span class="math notranslate nohighlight">\(E\)</span> is the eccentric anomaly.</p>
+</div>
+<div class="section" id="hyperbolic-orbit">
+<h3>Hyperbolic orbit<a class="headerlink" href="#hyperbolic-orbit" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+M_h &amp;= \sqrt{\frac{\mu}{(-a)^3}} t \\
+M_h &amp;= e \sinh F - F \\
+\tanh \frac{F}{2} &amp;= \sqrt{\frac{1-e}{1+e}} \tan \frac{\theta}{2} \\
+r &amp;= a \left( 1 - e \cosh F \right) \\
+v^2 &amp;= \mu \left( \frac{2}{r} - \frac{1}{a} \right) \\
+r_p &amp;= a (1 - e) \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_h\)</span> is the mean anomaly and <span class="math notranslate nohighlight">\(F\)</span> is the hyperbolic anomaly.</p>
 </div>
 </div>
 </div>
