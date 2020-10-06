@@ -330,7 +330,7 @@ and solving the orbital equation of motion numerically from initial conditions.<
 known at some instant in time, find the new state vectors <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span> after the true anomaly changes by <span class="math notranslate nohighlight">\(\Delta \theta\)</span>.</p>
 <div class="myclass figure align-default" id="fig-twobody">
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/two-body-problem.png"><img alt="Two-body problem diagram" class="bg-primary mb-1" src="../_images/two-body-problem.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Diagram of two-body problem with state vectors.</span><a class="headerlink" href="#fig-twobody" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Diagram of two-body problem with state vectors.</span><a class="headerlink" href="#fig-twobody" title="Permalink to this image">¶</a></p>
 </div>
 <p>Since the state vectors <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span> will always remain in the same two-dimensional plane,
 they must be able to be expressed as linear combinations of
@@ -423,8 +423,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="953af260-0e19-441e-a607-360400c613c1" name="3e5d5dc7-42e5-4039-b083-f1fb2d1e8b60" type="radio">
-</input><label class="tabbed-label" for="953af260-0e19-441e-a607-360400c613c1">
+<input checked="checked" id="747d3d5c-c9c0-4a42-822d-4b3eb0b96b8c" name="dce27b14-2728-487f-9619-8e9643e8d927" type="radio">
+</input><label class="tabbed-label" for="747d3d5c-c9c0-4a42-822d-4b3eb0b96b8c">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -458,8 +458,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="0fdbbbca-74d2-43e9-9e8c-eb79e09f3803" name="3e5d5dc7-42e5-4039-b083-f1fb2d1e8b60" type="radio">
-</input><label class="tabbed-label" for="0fdbbbca-74d2-43e9-9e8c-eb79e09f3803">
+<input id="d2356f79-61ce-4139-8f75-d04268153da7" name="dce27b14-2728-487f-9619-8e9643e8d927" type="radio">
+</input><label class="tabbed-label" for="d2356f79-61ce-4139-8f75-d04268153da7">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -515,7 +515,7 @@ true anomaly <span class="math notranslate nohighlight">\(\Delta \theta\)</span>
 this is just to simplify things a bit.)</p>
 <div class="myclass figure align-default" id="fig-kepler-time">
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/kepler-problem-time.png"><img alt="Kepler problem for time of flight" class="bg-primary mb-1" src="../_images/kepler-problem-time.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Diagram of Kepler problem for finding time of flight.</span><a class="headerlink" href="#fig-kepler-time" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Diagram of Kepler problem for finding time of flight.</span><a class="headerlink" href="#fig-kepler-time" title="Permalink to this image">¶</a></p>
 </div>
 <p>This problem requires a different approach. We can relate the transverse/angular
 component of velocity to the change in true anomaly:</p>
@@ -606,8 +606,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="69064b8d-8cb9-4a60-a5ec-581be500351e" name="e0f93342-0f31-4d32-8d9e-ee1a37421a82" type="radio">
-</input><label class="tabbed-label" for="69064b8d-8cb9-4a60-a5ec-581be500351e">
+<input checked="checked" id="226dc287-063d-4cc7-b033-da8277ed64d0" name="a52b8954-9eb8-445b-aa6e-8fa4501ded6b" type="radio">
+</input><label class="tabbed-label" for="226dc287-063d-4cc7-b033-da8277ed64d0">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -619,8 +619,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3c6ea2ed-782a-412b-936e-ac6a849ee863" name="e0f93342-0f31-4d32-8d9e-ee1a37421a82" type="radio">
-</input><label class="tabbed-label" for="3c6ea2ed-782a-412b-936e-ac6a849ee863">
+<input id="99792dd0-5953-4b04-ab41-4ef50738acc4" name="a52b8954-9eb8-445b-aa6e-8fa4501ded6b" type="radio">
+</input><label class="tabbed-label" for="99792dd0-5953-4b04-ab41-4ef50738acc4">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -744,8 +744,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="370856c3-3eb2-4e56-8899-d5967f75e0ca" name="5e91b029-ea87-4638-8834-695e096f30a8" type="radio">
-</input><label class="tabbed-label" for="370856c3-3eb2-4e56-8899-d5967f75e0ca">
+<input checked="checked" id="882cbaec-7f72-4e1e-8eb4-afa6e5559420" name="ecee6d73-7bea-4b13-87de-abbf54299b7f" type="radio">
+</input><label class="tabbed-label" for="882cbaec-7f72-4e1e-8eb4-afa6e5559420">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -773,8 +773,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="e4f71e99-05a2-4ccd-9eb9-4f29f05fdb68" name="5e91b029-ea87-4638-8834-695e096f30a8" type="radio">
-</input><label class="tabbed-label" for="e4f71e99-05a2-4ccd-9eb9-4f29f05fdb68">
+<input id="6aaa70e5-e410-48d3-8454-342c217436ed" name="ecee6d73-7bea-4b13-87de-abbf54299b7f" type="radio">
+</input><label class="tabbed-label" for="6aaa70e5-e410-48d3-8454-342c217436ed">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -811,7 +811,7 @@ python</label><div class="tabbed-content docutils">
 <h2>Summary of Kepler’s equations<a class="headerlink" href="#summary-of-kepler-s-equations" title="Permalink to this headline">¶</a></h2>
 <div class="myclass figure align-default" id="fig-anomaly">
 <a class="bg-primary mb-1 reference internal image-reference" href="../_images/mean_anomaly.png"><img alt="Diagram of mean and eccentric anomaly" class="bg-primary mb-1" src="../_images/mean_anomaly.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Diagram showing the geometric meaning of the mean and eccentric anomaly.
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Diagram showing the geometric meaning of the mean and eccentric anomaly.
 Original sources: <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Anomalies.PNG">PNG by Brews ohare</a>,
 <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Mean_Anomaly.svg">SVG by CheCheDaWaff</a>.
 Shared under <a class="reference external" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA</a></span><a class="headerlink" href="#fig-anomaly" title="Permalink to this image">¶</a></p>
