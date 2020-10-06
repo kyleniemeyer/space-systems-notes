@@ -230,6 +230,26 @@
    Orbital equation of motion
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#specific-angular-momentum">
+   Specific angular momentum
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orbit-equation">
+   Orbit equation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#velocity-components">
+   Velocity components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#elliptic-orbits">
+   Elliptic orbits
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -315,12 +335,130 @@ for an Earth-satellite system <span class="math notranslate nohighlight">\(\mu =
 This is a vector, nonlinear, second-order ordinary differential equation.
 We can solve this numerically by decomposing into a system of six first-order equations,
 but we can also study orbits in a two-dimensional plane.</p>
+<p>The goal of any solution approach is to obtain the <strong>state vectors</strong> of position and velocity,
+<span class="math notranslate nohighlight">\(\vec{r}(t)\)</span> and <span class="math notranslate nohighlight">\(\vec{v}(t)\)</span>, which are both functions of time.</p>
+</div>
+<div class="section" id="specific-angular-momentum">
+<h2>Specific angular momentum<a class="headerlink" href="#specific-angular-momentum" title="Permalink to this headline">¶</a></h2>
+<p>Now that we know the equation governing orbital motion, and understand that this comes from Newton’s law of gravitation,
+we can see that in a general orbit, many quantities will constantly be changing: position, velocity, and force.
+While these things are constantly changing, we will see that <strong>specific angular momentum</strong> remains constant:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{h} = \vec{r} \times \vec{v} \;,
+\]</div>
+<p>which is likely the single-most important quantity in orbital mechanics/astrodynamics.
+Note <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span> form an orbital plane, and
+<span class="math notranslate nohighlight">\(\vec{h}\)</span> is perpendicular to this plane.</p>
+<p>We can show that specific angular momentum remains constant by taking the cross product of the
+orbital equation of motion with the position vector:</p>
+<div class="margin sidebar">
+<p class="sidebar-title">Typo in book</p>
+<p>There is a typo on page 14 of <em>Fundamentals of Astrodynamics</em> (2nd edition) in this derivation,
+where <span class="math notranslate nohighlight">\(\frac{d}{dt} \left( \vec{r} \times \vec{\ddot{r}} \right)\)</span> should be
+<span class="math notranslate nohighlight">\(\frac{d}{dt} \left( \vec{r} \times \vec{\dot{r}} \right)\)</span>.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{r} \times \vec{\ddot{r}} + \vec{r} \times \frac{\mu}{r^3} \vec{r} &amp;= 0 \quad \text{but } \vec{r} \times \vec{r} = 0 \\
+\rightarrow \vec{r} \times \vec{\ddot{r}} &amp;= 0 \;. \\
+\text{Then, } \frac{d\vec{h}}{dt} = \frac{d}{dt} \left( \vec{r} \times \vec{v} \right) &amp;= \frac{d}{dt} \left( \vec{r} \times \vec{\dot{r}} \right) \\
+\text{Product rule: } \frac{d\vec{h}}{dt} = \vec{\dot{r}} \times \vec{\dot{r}} + \vec{r} \times \vec{\ddot{r}} &amp;= \vec{r} \times \vec{\ddot{r}} \\
+\therefore \frac{d\vec{h}}{dt} = \vec{r} \times \vec{\ddot{r}} &amp;= 0 \;.
+\end{align}
+\end{split}\]</div>
+<p>Therefore, <span class="math notranslate nohighlight">\(\vec{h}\)</span> is constant, while position, velocity, and force/acceleration may change.</p>
+</div>
+<div class="section" id="orbit-equation">
+<h2>Orbit equation<a class="headerlink" href="#orbit-equation" title="Permalink to this headline">¶</a></h2>
+<p>If we know the specific angular momentum, it would be helpful to relate this to position and velocity for a specific orbit.
+We can obtain a useful relation by taking the cross product of the orbital equation of motion with angular momentum:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{\ddot{r}} \times \vec{h} + \frac{\mu}{r^3} \left(\vec{r} \times \vec{h}\right) &amp;= 0 \\
+\text{but } \frac{d}{dt} \left( \vec{\dot{r}} \times \vec{h} \right) &amp;= \vec{\ddot{r}} \times \vec{h} + \vec{\dot{r}} \times \vec{\dot{h}} = \vec{\ddot{r}} \times \vec{h} \\
+\rightarrow \frac{d}{dt} \left( \vec{\dot{r}} \times \vec{h} \right) + \frac{\mu}{r^3} \left[ \vec{r} \times \left( \vec{r} \times \vec{v} \right) \right] &amp;= 0 \\
+\text{via law of triple cross products: } \frac{d}{dt} \left( \vec{\dot{r}} \times \vec{h} \right) &amp;= \frac{\mu}{r^3} \left[ \vec{\dot{r}} r^2 - \vec{r} \left(\vec{r} \cdot \vec{\dot{r}} \right) \right] \\
+\int \frac{d}{dt} \left( \vec{\dot{r}} \times \vec{h} \right) &amp;= \mu \int \frac{d}{dt} \left( \frac{\vec{r}}{|r|} \right) \\
+\vec{\dot{r}} \times \vec{h} &amp;= \frac{\mu}{r} \vec{r} + \vec{C} \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{C}\)</span> is a vector constant of integration.
+We can obtain a scalar equation by taking the dot product of the last result with the position vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{r} \cdot \left( \vec{\dot{r}} \times \vec{h} \right) &amp;= \mu \left( \vec{r} \cdot \frac{\vec{r}}{|r|} \right) + \vec{r} \cdot \vec{C} \\
+\text{but } \vec{r} \cdot \vec{\dot{r}} \times \vec{h} = \vec{r} \cdot \vec{v} \times \vec{h} &amp;= \vec{r} \times \vec{v} \cdot \vec{h} = \vec{h}\cdot\vec{h} = h^2 \\
+\rightarrow h^2 &amp;= \mu r + r \, C \cos \theta \\
+\frac{h^2}{\mu} &amp;= r \left( 1 + \frac{C}{\mu} \cos \theta \right) \\
+\therefore r &amp;= \frac{h^2 / \mu}{1 + e \cos \theta} \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{C}\)</span>, called the <strong>true anomaly</strong> (and also referred to with the variable <span class="math notranslate nohighlight">\(\nu\)</span> in some places),
+and <span class="math notranslate nohighlight">\(e = \frac{C}{\mu}\)</span> is the <strong>eccentricity</strong>.
+The is the <strong>orbit equation</strong>, and it tells us the radial distance for a given location in orbit, based on a magnitude of angular momentum.</p>
+<p>Now that we have an equation for the shape of any orbit, we can look at the different kinds of orbits that are possible.
+The orbital equation above describes a family of curves called <strong>conic sections</strong>, because they can be formed by taking
+two-dimensional slices of three-dimensional opposed cones:</p>
+<div class="myclass figure align-default" id="fig-conic-sections">
+<a class="bg-white mb-1 reference internal image-reference" href="../_images/conic-sections.svg"><img alt="Conic sections" class="bg-white mb-1" src="../_images/conic-sections.svg" width="400px" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Depiction of the conic sections: circle, ellipse, parabola, and hyperbola.
+Source: Kelvinsong / <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA</a>, hosted on <a class="reference external" href="https://commons.wikimedia.org/wiki/File:The_conical_cones_of_conics.svg">Wikimedia Commons</a>.</span><a class="headerlink" href="#fig-conic-sections" title="Permalink to this image">¶</a></p>
+</div>
+<p>We can see that four orbital shapes are possible, depending on the value of eccentricity <span class="math notranslate nohighlight">\(e\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e = 0\)</span>: circular orbit, which is a special case of an ellipse. GPS satellites have nearly circular orbits (<span class="math notranslate nohighlight">\(e &lt; 0.02\)</span>), to keep nearly a constant radial distance from the surface.</p></li>
+<li><p><span class="math notranslate nohighlight">\(0 &lt; e &lt; 1\)</span>: elliptical orbit. This is the shape of planetary orbits, and nearly all stable orbits are elliptical.</p></li>
+<li><p><span class="math notranslate nohighlight">\(e = 1\)</span>: parabolic orbit. This is unnatural, and we generally won’t discuss this type of orbit.</p></li>
+<li><p><span class="math notranslate nohighlight">\(e &gt; 1\)</span>: hyperbolic orbit. This is a so-called flyby orbit, where the satellite/orbiting object comes in close and then leaves.</p></li>
+</ul>
+</div>
+<div class="section" id="velocity-components">
+<h2>Velocity components<a class="headerlink" href="#velocity-components" title="Permalink to this headline">¶</a></h2>
 <div class="myclass figure align-default" id="fig-flightpath">
-<a class="bg-primary mb-1 reference internal image-reference" href="../_images/FlightPathAngle.png"><img alt="Flight-path angle" class="bg-primary mb-1" src="../_images/FlightPathAngle.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Position and velocity vectors of an object orbiting a central body,
+<a class="bg-white mb-1 reference internal image-reference" href="../_images/FlightPathAngle.svg"><img alt="Flight-path angle" class="bg-white mb-1" src="../_images/FlightPathAngle.svg" width="500px" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Position and velocity vectors of an object orbiting a central body,
 showing the flight-path angle <span class="math notranslate nohighlight">\(\nu = \theta\)</span>.
 Source: Åntøinæ / <a class="reference external" href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA</a>, hosted on <a class="reference external" href="https://commons.wikimedia.org/wiki/File:FlightPathAngle.svg">Wikimedia Commons</a>.</span><a class="headerlink" href="#fig-flightpath" title="Permalink to this image">¶</a></p>
 </div>
+<p>The velocity vector can be broken into two components, in the radial and angular/transverse directions:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{v} &amp;= \vec{v}_r \hat{u}_r + \vec{v}_{\theta} \hat{u}_{\theta} \\
+&amp;= \dot{r} \hat{u}_r + r \dot{\theta} \hat{u}_{\theta} \\
+v_r &amp;= v_0 \sin \gamma \\
+v_{\theta} &amp;= v_0 \cos \gamma \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma\)</span> is the flight-path angle (the angle between <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span>),
+<span class="math notranslate nohighlight">\(\hat{u}_r\)</span> is the radial unit vector,
+<span class="math notranslate nohighlight">\(\hat{u}_{\theta} = \hat{u}_{\perp}\)</span> is the polar/transverse unit vector, and
+<span class="math notranslate nohighlight">\(v_0 = |\vec{v}|\)</span> is the velocity magnitude (which changes with time).</p>
+<p>Ideally, we want to express the velocity components in terms of known quantities.
+Let’s expand the definition of angular momentum:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{h} = \vec{r} \times \vec{v} &amp;= \vec{r} \times \left(\dot{r} \hat{u}_r \right) + \vec{r} \times \left( r \dot{\theta} \hat{u}_{\theta} \right) \\
+\text{but} \quad \vec{r} \times \hat{u}_r &amp;= 0 \quad \text{and} \quad \vec{r} \perp \hat{u}_{\theta} \\
+\rightarrow h &amp;= r^2 \dot{\theta} = r v_{\theta} 
+\end{align}
+\end{split}\]</div>
+<p>We can combine this with the orbit equation, and recognize that <span class="math notranslate nohighlight">\(v_r = \frac{dr}{dt}\)</span> to get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+v_{\theta} &amp;= \frac{h}{r} = \frac{\mu}{h} \left( 1 + e \cos \theta \right) \\
+v_r &amp;= \frac{dr}{dt} = \frac{\mu}{h} e \sin \theta
+\end{align}
+\end{split}\]</div>
+</div>
+<div class="section" id="elliptic-orbits">
+<h2>Elliptic orbits<a class="headerlink" href="#elliptic-orbits" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
