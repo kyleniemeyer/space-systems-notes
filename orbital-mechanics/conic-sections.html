@@ -25,7 +25,7 @@
     href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.bfb7730f9caf2ec0b46a44615585038c.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -188,7 +188,8 @@
 
         <!-- Full screen (wrap in <a> to have style consistency -->
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
@@ -248,6 +249,18 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#elliptic-orbits">
    Elliptic orbits
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-problem-workflow">
+     Example problem workflow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kepler-s-laws">
+   Kepler’s Laws
   </a>
  </li>
 </ul>
@@ -459,9 +472,12 @@ v_r &amp;= \frac{dr}{dt} = \frac{\mu}{h} e \sin \theta
 </div>
 <div class="section" id="elliptic-orbits">
 <h2>Elliptic orbits<a class="headerlink" href="#elliptic-orbits" title="Permalink to this headline">¶</a></h2>
+<p>Elliptic orbits form for eccentricities of <span class="math notranslate nohighlight">\(0 &lt; e &lt; 1\)</span>, with an example shown next:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## code for plotting elliptical orbit</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">mpatches</span>
 
 <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 
@@ -482,7 +498,7 @@ v_r &amp;= \frac{dr}{dt} = \frac{\mu}{h} e \sin \theta
     <span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="n">focus_loc</span> <span class="o">=</span> <span class="n">eccentricity</span><span class="o">*</span><span class="n">semi_major</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">focus_loc</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">focus_loc</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 
 <span class="c1"># focus to perigee</span>
 <span class="n">radius_perigee</span> <span class="o">=</span> <span class="n">semi_major</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">eccentricity</span><span class="p">)</span>
@@ -496,14 +512,22 @@ v_r &amp;= \frac{dr}{dt} = \frac{\mu}{h} e \sin \theta
          <span class="n">length_includes_head</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">radius_apogee</span><span class="o">-</span><span class="n">focus_loc</span><span class="p">)</span><span class="o">*</span><span class="mf">0.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$r_a$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">semi_major</span><span class="p">,</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">),</span> 
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="n">semi_major</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$a$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="n">semi_minor</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> 
+             <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;&lt;-&gt;&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">semi_minor</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$b$&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;top&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_position</span><span class="p">((</span><span class="s1">&#39;data&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([],</span> <span class="p">[])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([],</span> <span class="p">[])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linestyle</span><span class="p">(</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_linestyle</span><span class="p">(</span><span class="s2">&quot;dotted&quot;</span><span class="p">)</span>
@@ -515,15 +539,87 @@ v_r &amp;= \frac{dr}{dt} = \frac{\mu}{h} e \sin \theta
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-3-0bf4501a1ad7&gt;:42: MatplotlibDeprecationWarning: Passing the minor parameter of set_ticks() positionally is deprecated since Matplotlib 3.2; the parameter will become keyword-only two minor releases later.
-  ax.set_xticks([], [])
-&lt;ipython-input-3-0bf4501a1ad7&gt;:43: MatplotlibDeprecationWarning: Passing the minor parameter of set_ticks() positionally is deprecated since Matplotlib 3.2; the parameter will become keyword-only two minor releases later.
-  ax.set_yticks([], [])
-</pre></div>
-</div>
-<img alt="../_images/conic-sections_9_1.png" src="../_images/conic-sections_9_1.png" />
+<img alt="../_images/conic-sections_9_0.png" src="../_images/conic-sections_9_0.png" />
 </div>
 </div>
+<p>Some definitions:</p>
+<ul class="simple">
+<li><p>focus: <span class="math notranslate nohighlight">\(F\)</span>, is the location of the center of mass of the body being orbited (e.g., Earth)</p></li>
+<li><p>semi-major axis: <span class="math notranslate nohighlight">\(a\)</span>. This is also the average distance of the orbit.</p></li>
+<li><p>semi-minor axis: <span class="math notranslate nohighlight">\(b\)</span></p></li>
+<li><p>point on the orbit nearest to the focus: periapse, with radial position <span class="math notranslate nohighlight">\(r_p\)</span></p></li>
+<li><p>point on the orbit furthest from the focus: apoapse, with radial position <span class="math notranslate nohighlight">\(r_a\)</span></p></li>
+<li><p>Apse line: the line connecting the focus and periapse.</p></li>
+</ul>
+<p>For Earth-satellite systems, we call the periapse the <strong>perigee</strong> and the apoapse the <strong>apogee</strong>. These terms will vary depending on the body being orbited, for example in solar orbits we have the periapse and apoapse.
+The true anomaly <span class="math notranslate nohighlight">\(\theta\)</span> starts at the apse line; <span class="math notranslate nohighlight">\(\theta = 0\)</span> at periapse/perigee and <span class="math notranslate nohighlight">\(\theta = \pi\)</span> at apoapse/apogee.</p>
+<p>Some useful relationships:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+a &amp;= \frac{r_p + r_a}{2} \\
+e &amp;= \frac{r_a - r_p}{r_a + r_p} \\
+r_p &amp;= a (1-e) = \frac{h^2/\mu}{1 + e} \\
+r_a &amp;= a (1+e) = \frac{h^2/\mu}{1 - e} \\
+h^2 &amp;= a \mu (1 - e^2)
+\end{align}
+\end{split}\]</div>
+<div class="section" id="example-problem-workflow">
+<h3>Example problem workflow<a class="headerlink" href="#example-problem-workflow" title="Permalink to this headline">¶</a></h3>
+<p><strong>Problem:</strong> given the altitude of a satellite, the velocity magnitude <span class="math notranslate nohighlight">\(v_0\)</span>,
+flight-path angle <span class="math notranslate nohighlight">\(\gamma\)</span>, and knowing the gravitational parameter for an
+Earth-satellite system (<span class="math notranslate nohighlight">\(\mu\)</span> = 398,600 km<span class="math notranslate nohighlight">\(^3\)</span>/s<span class="math notranslate nohighlight">\(^2\)</span>, find the eccentricity of the orbit <span class="math notranslate nohighlight">\(e\)</span>
+and the true anomaly <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<p><strong>Solution steps:</strong></p>
+<ol>
+<li><p>Find <span class="math notranslate nohighlight">\(r\)</span> = altitude + $R_e = 6378 km (the average radius of the Earth).</p></li>
+<li><p>Calculate the velocity components, then use <span class="math notranslate nohighlight">\(v_{\theta}\)</span> to get the angular momentum:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   v_r &amp;= v_0 \sin \gamma = \frac{\mu}{h} e \sin \theta \\
+   v_{\theta} &amp;= v_0 \cos \gamma = \frac{h}{r} \rightarrow h
+   \end{align}
+   \end{split}\]</div>
+</li>
+<li><p>Calculate <span class="math notranslate nohighlight">\(e \sin \theta\)</span> and <span class="math notranslate nohighlight">\(e \cos \theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   v_0 \sin \gamma &amp;= \frac{\mu}{h} e \sin \theta \rightarrow e \sin \theta \\
+   v_0 \cos \gamma = \frac{\mu}{h}(1 + e \cos \theta) \rightarrow e \cos \theta
+   \end{align}
+   \end{split}\]</div>
+</li>
+<li><p>Calculate the true anomaly <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+   \tan \theta = \frac{e \sin \theta}{e \cos \theta} \rightarrow \theta
+   \]</div>
+</li>
+<li><p>Calculate the eccentricity:</p>
+<div class="math notranslate nohighlight">
+\[
+   r = \frac{h^2/\mu}{1 + e \cos \theta} \rightarrow e
+   \]</div>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Altitude is not the same thing as the radial position! Altitude is measured from the
+surface of the Earth, so you need to add the Earth’s radius.
+(Also, this is not a constant value!)</p>
+</div>
+</div>
+</div>
+<div class="section" id="kepler-s-laws">
+<h2>Kepler’s Laws<a class="headerlink" href="#kepler-s-laws" title="Permalink to this headline">¶</a></h2>
+<p>We have already encountered Kepler’s first law!</p>
+<div class="admonition-kepler-s-first-law admonition">
+<p class="admonition-title">Kepler’s First Law</p>
+<p>Orbiting bodies travel in an ellipse.</p>
+</div>
+<p>For Kepler’s second law, we need to look at how much time it takes orbits to sweep over a particular area;</p>
 </div>
 </div>
 
