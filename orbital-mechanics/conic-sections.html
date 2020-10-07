@@ -263,6 +263,11 @@
    Kepler’s Laws
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hyperbolic-orbits">
+   Hyperbolic orbits
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -614,12 +619,72 @@ surface of the Earth, so you need to add the Earth’s radius.
 </div>
 <div class="section" id="kepler-s-laws">
 <h2>Kepler’s Laws<a class="headerlink" href="#kepler-s-laws" title="Permalink to this headline">¶</a></h2>
-<p>We have already encountered Kepler’s first law!</p>
+<p>We have already encountered Kepler’s first law! Originally, Brahe and Kepler though that orbits were circular,
+due to the mathematical/religious “perfection” of the shape. But, their predictions based on
+this idea did not match their (accurate) observations—they were always off.</p>
+<p>Then, Kepler had an epiphany: an elliptical orbit would explain their observations.</p>
 <div class="admonition-kepler-s-first-law admonition">
 <p class="admonition-title">Kepler’s First Law</p>
-<p>Orbiting bodies travel in an ellipse.</p>
+<p>Orbiting bodies travel in ellipses.</p>
 </div>
-<p>For Kepler’s second law, we need to look at how much time it takes orbits to sweep over a particular area;</p>
+<p>For Kepler’s second law, we need to look at how much time it takes orbits to sweep over a particular area:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+v_{\theta} &amp;= \frac{h}{r} \\
+\rightarrow h &amp;= r v_{\theta} = r \, r \, \dot{\theta} \\
+h &amp;= r^2 \frac{d\theta}{dt} \\
+d\theta &amp;= \frac{h}{r^2} dt \;,
+\end{align}
+\end{split}\]</div>
+<p>but, we can also express a differential area as <span class="math notranslate nohighlight">\(dA = \frac{r^2}{2} d \theta\)</span>.
+Combining these together:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+dA &amp;= \frac{r^2}{2} d\theta = \frac{r^2}{2} \left( \frac{h}{r^2} dt \right) \\
+\therefore \frac{dA}{dt} &amp;= \frac{h}{2} \;,
+\end{align}
+\end{split}\]</div>
+<p>which shows that the rate of change of area is constant!
+This is Kepler’s second law.</p>
+<div class="admonition-kepler-s-second-law admonition">
+<p class="admonition-title">Kepler’s Second Law</p>
+<p>Orbits sweep out equal areas in equal times.</p>
+</div>
+<p>We can obtain Kepler’s third law by integrating our result for area and time to find the orbital period:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\int dA &amp;= \int \frac{h}{2} dt \\
+\text{but } A &amp;= a b \pi \quad b = a^2 (1 - e^2) \\
+\rightarrow T &amp;= \frac{2 \pi}{\sqrt{\mu}} a^{3/2} \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the period for an elliptic orbit.</p>
+<div class="admonition-kepler-s-third-law admonition">
+<p class="admonition-title">Kepler’s Third Law</p>
+<p>The square of the period of an elliptic is proportional to the cube of the mean distance (i.e., the semi-major axis):
+<span class="math notranslate nohighlight">\(T^2 \propto a^3\)</span>.</p>
+</div>
+</div>
+<div class="section" id="hyperbolic-orbits">
+<h2>Hyperbolic orbits<a class="headerlink" href="#hyperbolic-orbits" title="Permalink to this headline">¶</a></h2>
+<p>Hyperbolic orbits occur for <span class="math notranslate nohighlight">\(e &gt; 1\)</span>, and are known as flyby orbits because the object comes in close and fast to the central mass/focus.
+As the orbiting body moves away from the focus, off to infinity, the velocity asymptotically approaches a constant
+(as <span class="math notranslate nohighlight">\(r \rightarrow \infty\)</span>) <strong>excess velocity</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+v_{\infty} = \sqrt{\frac{\mu}{a}} \;.
+\]</div>
+<p>We can also define the <strong>escape velocity</strong>, which is the velocity required at the perigee distance to achieve a hyperbolic orbit
+(and thus escape a stable, elliptical orbit):</p>
+<div class="math notranslate nohighlight">
+\[
+v_{\text{esc}} = \sqrt{ \frac{2 \mu}{r_p} } \;.
+\]</div>
+<p>If the orbiting body has this velocity or higher at perigee, then it will escape in a hyperbolic orbit.
+If the velocity is less than this, then it will settle into a stable elliptic orbit.</p>
 </div>
 </div>
 
