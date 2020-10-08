@@ -57,6 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Orbits in space" href="orbits-space.html" />
     <link rel="prev" title="Introduction to orbital mechanics: conic sections" href="conic-sections.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -111,6 +112,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Two-body problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="orbits-space.html">
+   Orbits in space
   </a>
  </li>
 </ul>
@@ -424,8 +430,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="acd9d91b-f6f3-4bce-bd14-f6ce791394de" name="b6ae9cb5-f64e-483b-9afa-9fc00921715c" type="radio">
-</input><label class="tabbed-label" for="acd9d91b-f6f3-4bce-bd14-f6ce791394de">
+<input checked="checked" id="31a42f2e-daf8-4af0-bb06-a507a3c5030c" name="befbb3b3-9114-42cd-92de-ba90982d843f" type="radio">
+</input><label class="tabbed-label" for="31a42f2e-daf8-4af0-bb06-a507a3c5030c">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -459,8 +465,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="5be1510d-7255-4338-a3c6-bce4c97af6e6" name="b6ae9cb5-f64e-483b-9afa-9fc00921715c" type="radio">
-</input><label class="tabbed-label" for="5be1510d-7255-4338-a3c6-bce4c97af6e6">
+<input id="86f76ea7-3d2a-4d82-9db6-54877b83b21d" name="befbb3b3-9114-42cd-92de-ba90982d843f" type="radio">
+</input><label class="tabbed-label" for="86f76ea7-3d2a-4d82-9db6-54877b83b21d">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -607,8 +613,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="21c0d82e-5931-43d0-b282-1ab54f66b524" name="c5478220-a163-4c26-a798-da45949d142f" type="radio">
-</input><label class="tabbed-label" for="21c0d82e-5931-43d0-b282-1ab54f66b524">
+<input checked="checked" id="1176af45-6469-44da-a5aa-d8b70f0bca57" name="87fc9c6b-f49e-4f3a-b557-d5dc99d74dd6" type="radio">
+</input><label class="tabbed-label" for="1176af45-6469-44da-a5aa-d8b70f0bca57">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -620,8 +626,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="85d084d7-53d4-4c85-8256-9286d7167a4e" name="c5478220-a163-4c26-a798-da45949d142f" type="radio">
-</input><label class="tabbed-label" for="85d084d7-53d4-4c85-8256-9286d7167a4e">
+<input id="852f7015-7f4a-40fa-abf7-24a2c8503d2b" name="87fc9c6b-f49e-4f3a-b557-d5dc99d74dd6" type="radio">
+</input><label class="tabbed-label" for="852f7015-7f4a-40fa-abf7-24a2c8503d2b">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -745,8 +751,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1501640e-a0f0-45a3-b2a7-0526fe0c5627" name="768d793b-a3a3-42f0-b49a-2a02810e4157" type="radio">
-</input><label class="tabbed-label" for="1501640e-a0f0-45a3-b2a7-0526fe0c5627">
+<input checked="checked" id="e8ad1601-9c77-486c-bd09-67ae7c333a64" name="673bec97-4539-4b18-a53f-eff75a003778" type="radio">
+</input><label class="tabbed-label" for="e8ad1601-9c77-486c-bd09-67ae7c333a64">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -774,8 +780,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="ba27366c-a6a1-40df-acc7-4bbe4891d590" name="768d793b-a3a3-42f0-b49a-2a02810e4157" type="radio">
-</input><label class="tabbed-label" for="ba27366c-a6a1-40df-acc7-4bbe4891d590">
+<input id="3460e5cf-c29d-4384-962e-2eaa402229a8" name="673bec97-4539-4b18-a53f-eff75a003778" type="radio">
+</input><label class="tabbed-label" for="3460e5cf-c29d-4384-962e-2eaa402229a8">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -879,6 +885,7 @@ r_p &amp;= a (1 - e) \;,
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="conic-sections.html" title="previous page">Introduction to orbital mechanics: conic sections</a>
+    <a class='right-next' id="next-link" href="orbits-space.html" title="next page">Orbits in space</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
