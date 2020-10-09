@@ -262,6 +262,11 @@
    Gibbs problem
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lambert-s-problem">
+   Lambert’s problem
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -572,8 +577,104 @@ geocentric equatorial frame of reference (<span class="math notranslate nohighli
 this is the Gibbs problem.</p>
 <p><strong>The problem:</strong> Given <span class="math notranslate nohighlight">\(\vec{R}_1, \vec{R}_2, \vec{R}_3\)</span>, find the six orbital elements
 <span class="math notranslate nohighlight">\(h, e, \theta, \omega, \Omega, i\)</span>.</p>
+<div class="myclass figure align-default" id="fig-gibbs">
+<a class="bg-white mb-1 reference internal image-reference" href="../_images/gibbs-problem.png"><img alt="Diagram showing Gibbs problem" class="bg-white mb-1" src="../_images/gibbs-problem.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Diagram showing Gibbs problem.</span><a class="headerlink" href="#fig-gibbs" title="Permalink to this image">¶</a></p>
+</div>
 <p>Note that the three position vectors must lie in the same plane, otherwise a stable
 two-body orbit is not possible.</p>
+<p>The goal here is to calculate the velocity vector at location 1, and then with <span class="math notranslate nohighlight">\(\vec{R}_1\)</span> and <span class="math notranslate nohighlight">\(\vec{V}_1\)</span>
+the orbital elements can be found using the steps given above:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{V}_1 = \sqrt{ \frac{\mu}{N D} } \left( \frac{\vec{D} \times \vec{R}_1}{r_1} + \vec{S} \right) \;,
+\]</div>
+<p>where the magnitudes of the position vectors are <span class="math notranslate nohighlight">\(r_1 = \left| \vec{R}_1 \right|\)</span>, <span class="math notranslate nohighlight">\(r_2 = \left| \vec{R}_2 \right|\)</span>,
+<span class="math notranslate nohighlight">\(r_3 = \left| \vec{R}_3 \right|\)</span>, and the other vectors are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+\vec{N} &amp;= r_1 \left( \vec{R}_2 \times \vec{R}_3 \right) + r_2 \left( \vec{R}_3 \times \vec{R}_1 \right) + r_3 \left( \vec{R}_1 \times \vec{R}_2 \right) \\
+\vec{D} &amp;= \vec{R}_2 \times \vec{R}_3 + \vec{R}_3 \times \vec{R}_1 + \vec{R}_1 \times \vec{R}_2 \\
+\vec{S} &amp;= \vec{R}_1 (r_2 - r_3) + \vec{R}_2 (r_3 - r_1) + \vec{R}_3 (r_1 - r_2) \;,
+\end{align}
+\end{split}\]</div>
+<p>and the magnitudes are <span class="math notranslate nohighlight">\(N = \left| \vec{N} \right|\)</span> and <span class="math notranslate nohighlight">\(D = \left| \vec{D} \right|\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You need to check that <span class="math notranslate nohighlight">\(\vec{D} \neq 0\)</span>, <span class="math notranslate nohighlight">\(\vec{N} \neq 0\)</span>, and that <span class="math notranslate nohighlight">\(\vec{D} \cdot \vec{N} \geq 0\)</span>.</p>
+</div>
+</div>
+<div class="section" id="lambert-s-problem">
+<h2>Lambert’s problem<a class="headerlink" href="#lambert-s-problem" title="Permalink to this headline">¶</a></h2>
+<p>Another fundamental problem is <strong>Lambert’s problem</strong>, which is finding the orbit that connects two points in space for a given transfer time.</p>
+<div class="myclass figure align-default" id="fig-lambert">
+<a class="bg-white mb-1 reference internal image-reference" href="../_images/lambert-problem.png"><img alt="Diagram showing Lambert problem" class="bg-white mb-1" src="../_images/lambert-problem.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Diagram showing Lambert’s problem of orbital transfer between two points.</span><a class="headerlink" href="#fig-lambert" title="Permalink to this image">¶</a></p>
+</div>
+<p><strong>Problem:</strong> Given <span class="math notranslate nohighlight">\(\vec{R}_1\)</span>, <span class="math notranslate nohighlight">\(\vec{R}_2\)</span>, and <span class="math notranslate nohighlight">\(\Delta t\)</span>, find the six orbital elements.</p>
+<p>Solution steps:</p>
+<ol>
+<li><p>Calculate the radial position magnitudes: <span class="math notranslate nohighlight">\(r_1 = \left| \vec{R}_1 \right|\)</span> and <span class="math notranslate nohighlight">\(r_2 = \left| \vec{R}_2 \right|\)</span>.</p></li>
+<li><p>Calculate the change in true anomaly, depending on if the orbit is prograde or retrograde (assume prograde to start):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   \text{if prograde } (i &lt; 90°): \Delta \theta &amp;= 
+     \begin{cases}
+     \cos^{-1} \left( \frac{\vec{R}_1 \cdot \vec{R}_2}{r_1 r_2} \right) \quad \text{if } \left(\vec{R}_1 \times \vec{R}_2 \right)_Z \geq 0 \\
+     360° - \cos^{-1} \left( \frac{\vec{R}_1 \cdot \vec{R}_2}{r_1 r_2} \right) \quad \text{if } \left(\vec{R}_1 \times \vec{R}_2 \right)_Z &lt; 0
+     \end{cases} \\
+   \text{if retrograde } (i &gt; 90°): \Delta \theta &amp;= 
+     \begin{cases}
+     \cos^{-1} \left( \frac{\vec{R}_1 \cdot \vec{R}_2}{r_1 r_2} \right) \quad \text{if } \left(\vec{R}_1 \times \vec{R}_2 \right)_Z &lt; 0 \\
+     360° - \cos^{-1} \left( \frac{\vec{R}_1 \cdot \vec{R}_2}{r_1 r_2} \right) \quad \text{if } \left(\vec{R}_1 \times \vec{R}_2 \right)_Z \geq 0
+     \end{cases} \\
+   \end{align}
+   \end{split}\]</div>
+</li>
+<li><p>Calculate the quantity <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+   A = \sin \Delta \theta \sqrt{ \frac{r_1 r_2}{1 - \cos \Delta \theta}}
+   \]</div>
+</li>
+<li><p>Iteratively solve for the universal anomaly parameter <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   y(z) &amp;= r_1 + r_2 + A \frac{z S(z) - 1}{\sqrt{C(z)}} \\
+   \sqrt{\mu} \, \Delta t &amp;= \left[ \frac{y(z)}{C(z)}\right]^{3/2} S(z) + A \sqrt{y(z)}
+   \end{align}
+   \end{split}\]</div>
+<p>A reasonable initial guess is <span class="math notranslate nohighlight">\(z=1\)</span>. Then, these equations can be used with an equation solver like <code class="docutils literal notranslate"><span class="pre">fzero</span></code>
+in Matlab or <code class="docutils literal notranslate"><span class="pre">scipy.optimize.root_scalar</span></code> in Python to solve for <span class="math notranslate nohighlight">\(z\)</span>. If <span class="math notranslate nohighlight">\(z &lt; 0\)</span>, the orbit is hyperbolic,
+and if <span class="math notranslate nohighlight">\(z &gt; 0\)</span> the solution is elliptic.</p>
+</li>
+<li><p>Calculate the universal Lagrange coefficients using the value of <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   f &amp;= 1 - \frac{y(z)}{r_1} \\
+   g &amp;= A \sqrt{ \frac{y(z)}{\mu} } \\
+   \dot{f} &amp;= \frac{\sqrt{\mu}}{r_1 r_2} \sqrt{ \frac{y(z)}{C(z)}} \left[ z S(z) - 1 \right] \\
+   \dot{g} &amp;= 1 - \frac{y(z)}{r_2}
+   \end{align}
+   \end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(C(z)\)</span> and <span class="math notranslate nohighlight">\(S(z)\)</span> are the Stumpf functions.</p>
+</li>
+<li><p>Calculate the velocities at each position:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   \vec{V}_1 &amp;= \frac{1}{g} \left( \vec{R}_2 - f \vec{R}_1 \right) \\
+   \vec{V}_2 &amp;= \frac{1}{g} \left( \dot{g} \vec{R}_2 - \vec{R}_1 \right) \\
+   \end{align}
+   \end{split}\]</div>
+</li>
+<li><p>With either state vector combination (say, <span class="math notranslate nohighlight">\(\vec{R}_1\)</span> and <span class="math notranslate nohighlight">\(\vec{V}_1\)</span>), you can now obtain the orbital elements.</p></li>
+</ol>
+<p>If you find that the orbit is actually retrograde (<span class="math notranslate nohighlight">\(i &gt; 90°\)</span>), then repeat the process starting at step 2 using the appropriate equation.</p>
 </div>
 </div>
 
