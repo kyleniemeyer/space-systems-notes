@@ -225,6 +225,25 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geocentric-equatorial-frame">
+   Geocentric equatorial frame
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#orbital-elements">
+   Orbital elements
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -234,6 +253,71 @@
                 
   <div class="section" id="orbits-in-space">
 <h1>Orbits in space<a class="headerlink" href="#orbits-in-space" title="Permalink to this headline">¶</a></h1>
+<p>Now that we know how to describe orbits in the perifocal frame, we need will look at how to move from this frame of reference to a more-general location in space.</p>
+<p>This module will cover:</p>
+<ul class="simple">
+<li><p>Geocentric equatorial frame</p></li>
+<li><p>Orbital elements</p></li>
+<li><p>Gibbs problem</p></li>
+<li><p>Gauss problem/Lambert theorem</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="geocentric-equatorial-frame">
+<h2>Geocentric equatorial frame<a class="headerlink" href="#geocentric-equatorial-frame" title="Permalink to this headline">¶</a></h2>
+<p>In the geocentric equatorial frame, the Earth lies at the center and spins,
+where the <span class="math notranslate nohighlight">\(X-Y\)</span> plane aligns with the equatorial plane of the planet and
+the planet’s axis of rotation points in the <span class="math notranslate nohighlight">\(Z\)</span> direction of the frame.</p>
+<p>Note that this frame does not align with the plane of the ecliptic (the solar plane),
+since the Earth’s axis is tilted 23.44°.</p>
+<div class="myclass figure align-default" id="fig-gef">
+<a class="bg-white mb-1 reference internal image-reference" href="../_images/geocentric_equatorial.png"><img alt="Depiction of geocentric equatorial frame" class="bg-white mb-1" src="../_images/geocentric_equatorial.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Diagram of geocentric equatorial frame.
+Original source by <a class="reference external" href="https://en.wikipedia.org/wiki/File:Ra_and_dec_rectangular.png">Tfr000</a>,
+shared under <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA</a></span><a class="headerlink" href="#fig-gef" title="Permalink to this image">¶</a></p>
+</div>
+<p>The <span class="math notranslate nohighlight">\(X\)</span> axis of the geocentric equatorial frame always points in the same direction,
+towards the vernal equinox. This direction is also referred to as the first point
+in Aries, or with ♈, since this pointed to the constellation Aries back
+when the Greeks came up with the idea. However, due to the precession of the Earth’s tilt,
+the direction changes over time, and it now points towards Pisces. In the year 2600,
+the vernal equinox will point towards Aquarius.</p>
+<p>Due to this precession, for precise orbital determinations we need to specify the
+direction of <span class="math notranslate nohighlight">\(X\)</span> via the appropriate 50-year <strong>epoch</strong>. We are currently in the
+2000 epoch, but in 2025 we will pass into the 2050 epoch.</p>
+<p>For an object in space, we can specify its position in the geocentric equatorial
+frame via its distance from the center (<span class="math notranslate nohighlight">\(r\)</span>), the angle away from the <span class="math notranslate nohighlight">\(X\)</span> direction
+in the equatorial plane is the right ascension (<span class="math notranslate nohighlight">\(\alpha\)</span>), and the angle above
+the plane is the declination (<span class="math notranslate nohighlight">\(\delta\)</span>).</p>
+</div>
+<div class="section" id="orbital-elements">
+<h2>Orbital elements<a class="headerlink" href="#orbital-elements" title="Permalink to this headline">¶</a></h2>
+<p>In the perifocal frame, we can specify an object in orbit using the eccentricity <span class="math notranslate nohighlight">\(e\)</span>,
+the specific angular momentum <span class="math notranslate nohighlight">\(h\)</span>, and the true anomaly <span class="math notranslate nohighlight">\(\theta\)</span>.
+To specify the orientation of this plane in the geocentric equatorial frame,
+we need three additional quantities.</p>
+<div class="myclass figure align-default" id="fig-orbital-elements">
+<a class="bg-white mb-1 reference internal image-reference" href="../_images/orbital_elements.svg"><img alt="Diagram with classical orbital elements" class="bg-white mb-1" src="../_images/orbital_elements.svg" width="400px" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Diagram showing the orbital elements.
+Note that this uses <span class="math notranslate nohighlight">\(\nu\)</span> for true anomaly, while we usually use <span class="math notranslate nohighlight">\(\theta\)</span> here.
+Source: <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Orbit1.svg">Lasunncty</a> at the English Wikipedia / <a class="reference external" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA</a></span><a class="headerlink" href="#fig-orbital-elements" title="Permalink to this image">¶</a></p>
+</div>
+<p>The additional three quantities needed are the:</p>
+<ul class="simple">
+<li><p>right ascension <span class="math notranslate nohighlight">\(\Omega\)</span>, which is the angle between the reference direction <span class="math notranslate nohighlight">\(\vec{X}\)</span>, or ♈, and the direction of the line of the ascending node <span class="math notranslate nohighlight">\(\vec{N}\)</span>;</p></li>
+<li><p>inclination <span class="math notranslate nohighlight">\(i\)</span>, the angle of the perifocal frame away from the reference plane; and</p></li>
+<li><p>argument of periapse/perigee <span class="math notranslate nohighlight">\(\omega\)</span>, the angle between the line of ascending node and direction of periapse <span class="math notranslate nohighlight">\(\vec{e}\)</span>.</p></li>
+</ul>
+<p>The orbit is prograde if <span class="math notranslate nohighlight">\(i &lt;\)</span> 90°, and retrograde if <span class="math notranslate nohighlight">\(i &gt;\)</span> 90°.</p>
+<p>Now, we have the six <strong>orbital elements</strong> needed to uniquely specify an orbit in a two-body system: <span class="math notranslate nohighlight">\(h, e, \theta, \Omega, i, \omega\)</span>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

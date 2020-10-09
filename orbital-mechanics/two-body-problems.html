@@ -430,8 +430,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7b3cdbe9-9ed5-4c48-a664-8f1ca38b13ec" name="8c99a361-c651-45f7-8f8f-35720c02be0e" type="radio">
-</input><label class="tabbed-label" for="7b3cdbe9-9ed5-4c48-a664-8f1ca38b13ec">
+<input checked="checked" id="a2e86c0c-416f-4dd2-a7e1-75483d825572" name="930a2e77-c5bb-4944-ad45-e941d8e5ec3b" type="radio">
+</input><label class="tabbed-label" for="a2e86c0c-416f-4dd2-a7e1-75483d825572">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -465,8 +465,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="09331870-ac8b-4588-9b84-6f3167940918" name="8c99a361-c651-45f7-8f8f-35720c02be0e" type="radio">
-</input><label class="tabbed-label" for="09331870-ac8b-4588-9b84-6f3167940918">
+<input id="21f208d2-4e5d-4c6d-9133-84d5b55197a4" name="930a2e77-c5bb-4944-ad45-e941d8e5ec3b" type="radio">
+</input><label class="tabbed-label" for="21f208d2-4e5d-4c6d-9133-84d5b55197a4">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -613,8 +613,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="9afe4cf1-42ee-450c-9757-1ec791f9ab73" name="3ba9b15f-2478-4bc1-ba25-f414cfcdbf21" type="radio">
-</input><label class="tabbed-label" for="9afe4cf1-42ee-450c-9757-1ec791f9ab73">
+<input checked="checked" id="6d8905e9-14d1-47ed-ba62-8202eac12273" name="40cdab20-1940-4429-8cef-6b5352761086" type="radio">
+</input><label class="tabbed-label" for="6d8905e9-14d1-47ed-ba62-8202eac12273">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -626,8 +626,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="37daeeb1-bcf3-4df6-aa78-4ad9ad226de7" name="3ba9b15f-2478-4bc1-ba25-f414cfcdbf21" type="radio">
-</input><label class="tabbed-label" for="37daeeb1-bcf3-4df6-aa78-4ad9ad226de7">
+<input id="40bb65c5-4486-408a-bbba-e78c6353d9c6" name="40cdab20-1940-4429-8cef-6b5352761086" type="radio">
+</input><label class="tabbed-label" for="40bb65c5-4486-408a-bbba-e78c6353d9c6">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -751,8 +751,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="795ada88-b2ee-4896-a311-b16979a3793a" name="c7d5b3d3-a06f-486b-a74a-5205927daba5" type="radio">
-</input><label class="tabbed-label" for="795ada88-b2ee-4896-a311-b16979a3793a">
+<input checked="checked" id="379b1327-defc-4daf-bfbe-dbc644dc69f5" name="ef1f7050-a87e-4747-8fa5-e69b38fa7c34" type="radio">
+</input><label class="tabbed-label" for="379b1327-defc-4daf-bfbe-dbc644dc69f5">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -780,8 +780,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="8d4f289c-534c-44f1-9d1c-bb07ef0ad9f8" name="c7d5b3d3-a06f-486b-a74a-5205927daba5" type="radio">
-</input><label class="tabbed-label" for="8d4f289c-534c-44f1-9d1c-bb07ef0ad9f8">
+<input id="1e27ed92-43af-4ba0-aa76-dc2344122131" name="ef1f7050-a87e-4747-8fa5-e69b38fa7c34" type="radio">
+</input><label class="tabbed-label" for="1e27ed92-43af-4ba0-aa76-dc2344122131">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
