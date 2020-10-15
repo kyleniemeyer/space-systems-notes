@@ -425,8 +425,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a59aaec7-cded-48dc-8317-e344db3efccd" name="f3f60704-be1c-468a-826e-5534cf13518c" type="radio">
-</input><label class="tabbed-label" for="a59aaec7-cded-48dc-8317-e344db3efccd">
+<input checked="checked" id="98027f8e-3c9d-44c7-bab2-48218e18f80e" name="98ae2b10-7881-4402-b85d-7fac9cf97ba0" type="radio">
+</input><label class="tabbed-label" for="98027f8e-3c9d-44c7-bab2-48218e18f80e">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -460,8 +460,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a3b0a98b-7685-4fad-8176-8aca216a0f50" name="f3f60704-be1c-468a-826e-5534cf13518c" type="radio">
-</input><label class="tabbed-label" for="a3b0a98b-7685-4fad-8176-8aca216a0f50">
+<input id="3edfe860-f917-4a2f-8749-ae113f3c0933" name="98ae2b10-7881-4402-b85d-7fac9cf97ba0" type="radio">
+</input><label class="tabbed-label" for="3edfe860-f917-4a2f-8749-ae113f3c0933">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -608,8 +608,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="0ccf763a-6c82-4745-a2c5-416acfe3aef4" name="9f5dba54-a46b-4c06-b067-21a1a5dd63e9" type="radio">
-</input><label class="tabbed-label" for="0ccf763a-6c82-4745-a2c5-416acfe3aef4">
+<input checked="checked" id="e4e182df-74d7-4789-bb14-4c2723592247" name="8635cfd0-62bf-4f70-96d9-4cc6d7882061" type="radio">
+</input><label class="tabbed-label" for="e4e182df-74d7-4789-bb14-4c2723592247">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(@</span><span class="n">f</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -621,8 +621,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d22fe44d-39e5-4e20-be46-6fbadca596b0" name="9f5dba54-a46b-4c06-b067-21a1a5dd63e9" type="radio">
-</input><label class="tabbed-label" for="d22fe44d-39e5-4e20-be46-6fbadca596b0">
+<input id="c4e138ba-2a93-4274-8b12-d57a8a442225" name="8635cfd0-62bf-4f70-96d9-4cc6d7882061" type="radio">
+</input><label class="tabbed-label" for="c4e138ba-2a93-4274-8b12-d57a8a442225">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -746,8 +746,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="4d89fd78-e47e-4494-9066-dc135b5e42a1" name="3a469c06-9c78-4fa6-a683-891a7e971540" type="radio">
-</input><label class="tabbed-label" for="4d89fd78-e47e-4494-9066-dc135b5e42a1">
+<input checked="checked" id="000c0498-07b8-4390-a6ac-71a3d8505181" name="e95136fa-3a72-4733-8e1d-e3ad9095719c" type="radio">
+</input><label class="tabbed-label" for="000c0498-07b8-4390-a6ac-71a3d8505181">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -775,8 +775,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="aca1e71d-45a8-4eff-bdc6-8aa947c1ba4e" name="3a469c06-9c78-4fa6-a683-891a7e971540" type="radio">
-</input><label class="tabbed-label" for="aca1e71d-45a8-4eff-bdc6-8aa947c1ba4e">
+<input id="c0bb5e09-b352-49bb-b7ea-fe17f92b4bd5" name="e95136fa-3a72-4733-8e1d-e3ad9095719c" type="radio">
+</input><label class="tabbed-label" for="c0bb5e09-b352-49bb-b7ea-fe17f92b4bd5">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -825,7 +825,7 @@ Shared under <a class="reference external" href="https://creativecommons.org/lic
 \begin{align}
 M_e &amp;= \frac{2 \pi}{T} t = \sqrt{\frac{\mu}{a^3}} t \\
 M_e &amp;= E - e \sin E \\
-\tan \frac{E}{2} &amp;= \sqrt{\frac{1-e}{1+e}} \tan \frac{\theta}{2} \\
+\tan \frac{\theta}{2} &amp;= \sqrt{\frac{1+e}{1-e}} \tan \frac{E}{2} \\
 r &amp;= a \left( 1 - e \cos E \right) \\
 v^2 &amp;= \mu \left( \frac{2}{r} - \frac{1}{a} \right) \\
 r_p &amp;= a (1 - e) \;,
@@ -835,12 +835,17 @@ r_p &amp;= a (1 - e) \;,
 </div>
 <div class="section" id="hyperbolic-orbit">
 <h3>Hyperbolic orbit<a class="headerlink" href="#hyperbolic-orbit" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title">Typo in SMAD!</p>
+<p>Be careful, there is a typo in the equation relating hyperbolic anomaly and true anomaly
+in <em>Space Mission Engineering: The New SMAD</em>.</p>
+</div>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{align}
-M_h &amp;= \sqrt{\frac{\mu}{(-a)^3}} t \\
+M_h &amp;= \sqrt{\frac{\mu}{(-a)^3}} \, t = \frac{\mu^2}{h^3} \left( e^2 - 1 \right)^{3/2} t\\
 M_h &amp;= e \sinh F - F \\
-\tanh \frac{F}{2} &amp;= \sqrt{\frac{1-e}{1+e}} \tan \frac{\theta}{2} \\
+\tan \frac{\theta}{2} &amp;= \sqrt{\frac{e+1}{e-1}} \tanh \frac{F}{2} \\
 r &amp;= a \left( 1 - e \cosh F \right) \\
 v^2 &amp;= \mu \left( \frac{2}{r} - \frac{1}{a} \right) \\
 r_p &amp;= a (1 - e) \;,
