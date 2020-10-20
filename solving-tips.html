@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Space Systems Engineering Notes &#8212; Space Systems Engineering notes</title>
+    <title>Problem-solving tips &#8212; Space Systems Engineering notes</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -57,7 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Problem-solving tips" href="solving-tips.html" />
+    <link rel="next" title="Introduction to orbital mechanics: conic sections" href="orbital-mechanics/conic-sections.html" />
+    <link rel="prev" title="Space Systems Engineering Notes" href="intro.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -92,7 +93,7 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="#">
+  <a class="reference internal" href="intro.html">
    Space Systems Engineering Notes
   </a>
  </li>
@@ -102,9 +103,9 @@
   Getting started
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="solving-tips.html">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Problem-solving tips
   </a>
  </li>
@@ -177,9 +178,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/solving-tips.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -197,10 +198,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/kyleniemeyer/space-systems-notes/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/kyleniemeyer/space-systems-notes/issues/new?title=Issue%20on%20page%20%2Fsolving-tips.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/kyleniemeyer/space-systems-notes/edit/main/intro.md"><button
+        <a class="edit-button" href="https://github.com/kyleniemeyer/space-systems-notes/edit/main/solving-tips.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -215,10 +216,41 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kyleniemeyer/space-systems-notes/main?urlpath=tree/solving-tips.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-equations-numerically">
+   Solving equations numerically
+  </a>
+ </li>
+</ul>
+
+        </nav>
         
     </div>
 </div>
@@ -227,21 +259,20 @@
         
               <div>
                 
-  <div class="section" id="space-systems-engineering-notes">
-<h1>Space Systems Engineering Notes<a class="headerlink" href="#space-systems-engineering-notes" title="Permalink to this headline">¶</a></h1>
-<p>This is a book of notes for the AAE 412/512: Space Systems Engineering course taught by
-<a class="reference external" href="https://niemeyer-research-group.github.io">Prof. Kyle Niemeyer</a> at Oregon State University.</p>
-<p>The reference textbooks for this course are:</p>
-<ul class="simple">
-<li><p><em>Fundamentals of Astrodynamics</em>, by Roger R. Bate, Donald D. Mueller, Jerry E. White, and William W. Saylor. Dover, Second Edition.</p></li>
-<li><p><a class="reference external" href="http://www.sme-smad.com"><em>Space Mission Engineering: The New SMAD</em></a>, by James R. Wertz, David F. Everett, and Jeffery J. Puschell. Microcosm Press.</p></li>
-<li><p><em>Elements of Rocket Propulsion</em>, by George P. Sutton and Oscar Biblarz. Wiley, Ninth Edition.</p></li>
-</ul>
-<p>The logo for these notes is licensed under the <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons BY-SA 3.0 license</a>.
-It was created by Peo~commonswiki and hosted on Wikipedia: https://commons.wikimedia.org/wiki/File:Angular_Parameters_of_Elliptical_Orbit.png</p>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
+  <div class="section" id="problem-solving-tips">
+<h1>Problem-solving tips<a class="headerlink" href="#problem-solving-tips" title="Permalink to this headline">¶</a></h1>
+<p>Many problems we face will require common solution approaches involving solving equations (i.e., finding the root of an equation)
+and integrating systems of ordinary differential equations (ODEs).
+This module shows some tips and strategies, and examples, for doing this.</p>
+<div class="section" id="solving-equations-numerically">
+<h2>Solving equations numerically<a class="headerlink" href="#solving-equations-numerically" title="Permalink to this headline">¶</a></h2>
+<p>In many problems we need to solve an equation. For example, let’s think about solving <span class="math notranslate nohighlight">\(f(x) = g\)</span>.
+This means we want to find the value <span class="math notranslate nohighlight">\(x\)</span> that satisfies this equation.
+One way to to think about this is that we want find the root of <span class="math notranslate nohighlight">\(f(x) - g = 0\)</span>.</p>
+<p>When the equation is complicated, nonlinear, and/or transcendental, we probably cannot find
+the root analytically, and so we need to solve for it numerically.</p>
+<p>In Matlab, we can use the <a class="reference external" href="https://www.mathworks.com/help/matlab/ref/fzero.html"><code class="docutils literal notranslate"><span class="pre">fzero()</span></code> function</a>, while
+in Python we can use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html"><code class="docutils literal notranslate"><span class="pre">root_scalar()</span></code> function</a> provided in SciPy’s <code class="docutils literal notranslate"><span class="pre">optimize</span></code> module.</p>
 </div>
 </div>
 
@@ -273,7 +304,8 @@ It was created by Peo~commonswiki and hosted on Wikipedia: https://commons.wikim
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="solving-tips.html" title="next page">Problem-solving tips</a>
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">Space Systems Engineering Notes</a>
+    <a class='right-next' id="next-link" href="orbital-mechanics/conic-sections.html" title="next page">Introduction to orbital mechanics: conic sections</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
