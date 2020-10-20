@@ -1,6 +1,10 @@
 - file: intro
-- file: solving-tips
-- part: Orbital Mechanics
+
+- part: Getting started
+  chapters:
+    - file: solving-tips
+
+- part: Orbital mechanics
   chapters:
     - file: orbital-mechanics/conic-sections
     - file: orbital-mechanics/two-body-problems
