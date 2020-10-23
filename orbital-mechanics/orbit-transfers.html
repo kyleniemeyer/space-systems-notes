@@ -237,6 +237,20 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hohmann-transfer">
+   Hohmann transfer
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -246,6 +260,23 @@
                 
   <div class="section" id="orbit-transfers">
 <h1>Orbit transfers<a class="headerlink" href="#orbit-transfers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hohmann-transfer">
+<h2>Hohmann transfer<a class="headerlink" href="#hohmann-transfer" title="Permalink to this headline">¶</a></h2>
+<p>The Hohmann transfer orbit offers a solution to transferring between two circular orbits, via an elliptic transfer orbit,
+using the least possible velocity change (<span class="math notranslate nohighlight">\(\Delta v\)</span>). It was first recognized/demonstrated by Hohmann in 1925,
+before the rocket technology to achieve any orbit existed!</p>
+<p>A typical use of the Hohmann transfer is to start at a lower-altitude circular “parking orbit”, then use
+the elliptical transfer orbit to reach a higher-altitude circular orbit. This involves two instantaneous
+changes in velocity (<span class="math notranslate nohighlight">\(\Delta v\)</span>), one at the perigee of the elliptical orbit and one at the apogee (the “apogee kick”).</p>
+<div class="myclass figure align-default" id="fig-hohmann">
+<a class="bg-white mb-1 reference internal image-reference" href="../_images/Hohmann_transfer_orbit.svg"><img alt="Illustration of a Hohmann transfer orbit" class="bg-white mb-1" src="../_images/Hohmann_transfer_orbit.svg" width="400px" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Illustration of a Hohmann transfer orbit, from a smaller circular orbit to a larger circular orbit.
+Source: <a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/d/df/Hohmann_transfer_orbit.svg">Leafnode</a>, <a class="reference external" href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a> via Wikimedia Commons.</span><a class="headerlink" href="#fig-hohmann" title="Permalink to this image">¶</a></p>
+</div>
+<p><strong>The problem:</strong> Given the original orbit’s perigee and apogee distances (<span class="math notranslate nohighlight">\(r_{p1}\)</span> and <span class="math notranslate nohighlight">\(r_{a1}\)</span>),
+and the apogee distance of the desired elliptical orbit (which also may be the radius of the final circular orbit),
+find the required instantaneous change in velocity <span class="math notranslate nohighlight">\(\Delta v\)</span> to enter the elliptical orbit.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
