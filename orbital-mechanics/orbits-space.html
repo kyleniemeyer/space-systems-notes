@@ -567,7 +567,7 @@ geocentric equatorial frame of reference (<span class="math notranslate nohighli
 <li><p>Calculate the total transformation matrix:</p>
 <div class="math notranslate nohighlight">
 \[
-   \left[ Q_{X_x} \right] = R_3 \left( \omega \right) R_1 (i) R_3 \left( \Omega \right) \;,
+   \left[ Q_{Xx} \right] = R_3 \left( \omega \right) R_1 (i) R_3 \left( \Omega \right) \;,
    \]</div>
 <p>which involves matrix multiplications.</p>
 </li>
@@ -575,8 +575,8 @@ geocentric equatorial frame of reference (<span class="math notranslate nohighli
 <div class="math notranslate nohighlight">
 \[\begin{split}
    \begin{align}
-   \vec{R} &amp;= \left[ Q_{X_x} \right]^{\top} \vec{r} \\
-   \vec{V} &amp;= \left[ Q_{X_x} \right]^{\top} \vec{v} \;,
+   \vec{R} &amp;= \left[ Q_{Xx} \right]^{\top} \vec{r} \\
+   \vec{V} &amp;= \left[ Q_{Xx} \right]^{\top} \vec{v} \;,
    \end{align}
    \end{split}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\vec{r}\)</span> and <span class="math notranslate nohighlight">\(\vec{v}\)</span> are the state vectors in the perifocal frame:</p>
@@ -724,7 +724,8 @@ then rotate that into the local topocentric frame:</p>
 \left\{ \cos \theta \, \vec{I} + \sin \theta \, \vec{J} \right\} + \\ 
 \left[ \frac{\bar{R}_e (1 - f^2)}{\sqrt{1 - (2f - f^2) \sin \phi}} + H \right] \sin \phi \, \vec{K} \;,
 \end{split}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\bar{R}_e\)</span> = 6378 km is the average radius of the Earth and
+<p>where <span class="math notranslate nohighlight">\(\bar{R}_e\)</span> = 6378 km is the average radius of the Earth,
+<span class="math notranslate nohighlight">\(H\)</span> is the altitude/elevation of the observing site, and
 <span class="math notranslate nohighlight">\(f = 0.003353\)</span> is the oblatedness of the Earth.
 Then, <span class="math notranslate nohighlight">\([Q_{Xx}] = R_1 \left( \phi \right) \cdot R_3 \left( \theta \right)\)</span>
 is the rotation matrix:</p>
