@@ -247,6 +247,11 @@
    Hohmann transfer
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apse-line-rotation">
+   Apse line rotation
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -274,8 +279,49 @@ changes in velocity (<span class="math notranslate nohighlight">\(\Delta v\)</sp
 Source: <a class="reference external" href="https://upload.wikimedia.org/wikipedia/commons/d/df/Hohmann_transfer_orbit.svg">Leafnode</a>, <a class="reference external" href="https://creativecommons.org/licenses/by-sa/2.5">CC BY-SA 2.5</a> via Wikimedia Commons.</span><a class="headerlink" href="#fig-hohmann" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>The problem:</strong> Given the original orbit’s perigee and apogee distances (<span class="math notranslate nohighlight">\(r_{p1}\)</span> and <span class="math notranslate nohighlight">\(r_{a1}\)</span>),
-and the apogee distance of the desired elliptical orbit (which also may be the radius of the final circular orbit),
+and the apogee distance of the desired elliptical orbit (which also may be the radius of the final circular orbit) <span class="math notranslate nohighlight">\(r_{a2}\)</span>,
 find the required instantaneous change in velocity <span class="math notranslate nohighlight">\(\Delta v\)</span> to enter the elliptical orbit.</p>
+<p>The change in velocity needed is the difference in perigee velocities of the two
+orbits. For orbit 1:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+e_1 &amp;= \frac{r_{a1} - r_{p1}}{r_{a1} + r_{p1}} \\
+r_{p1} &amp;= \frac{h_1^2 / \mu}{1 + e_1} \\
+\rightarrow h_1 &amp;= \sqrt{2 \mu} \sqrt{\frac{r_{p1} r_{a1}}{r_{p1} + r_{a1}}} \\
+v_{p1} &amp;= \frac{h_1}{r_{p1}} \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(v_{p1}\)</span> is the velocity of orbit 1 at its perigee.</p>
+<p>Similarly, for orbit 2:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+h_2 &amp;= \sqrt{2 \mu} \sqrt{\frac{r_{p2} r_{a2}}{r_{p1} + r_{a2}}} \\
+v_{p2} &amp;= \frac{h_2}{r_{p2}} \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r_{p2} = r_{p1}\)</span> is the perigee distance, shared between the orbits.
+Then, the instantaneous velocity change needed is</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta v = v_{p2} - v_{p1} \;.
+\]</div>
+<p>Orbit 2 may be an elliptical transfer orbit, used to reach a higher circular orbit via
+an “apogee kick”, which is a second velocity change at the apogee of the elliptical orbit.
+We can determine the velocity change needed to enter a circular orbit with a radius
+matching <span class="math notranslate nohighlight">\(r_{a2}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+h_3 &amp;= \sqrt{2 \mu} \sqrt{\frac{r_{a2} r_{a2}}{r_{a2} + r_{a2}}} = \sqrt{\mu r_{a2}} \\
+v_{3} &amp;= \frac{h_3}{r_{a2}} \;, \\
+\Delta v &amp;= v_3 - v_{a2}
+\end{align}
+\end{split}\]</div>
+</div>
+<div class="section" id="apse-line-rotation">
+<h2>Apse line rotation<a class="headerlink" href="#apse-line-rotation" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
