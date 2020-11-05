@@ -25,8 +25,8 @@
     href="_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -273,6 +273,104 @@ One way to to think about this is that we want find the root of <span class="mat
 the root analytically, and so we need to solve for it numerically.</p>
 <p>In Matlab, we can use the <a class="reference external" href="https://www.mathworks.com/help/matlab/ref/fzero.html"><code class="docutils literal notranslate"><span class="pre">fzero()</span></code> function</a>, while
 in Python we can use the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html"><code class="docutils literal notranslate"><span class="pre">root_scalar()</span></code> function</a> provided in SciPy’s <code class="docutils literal notranslate"><span class="pre">optimize</span></code> module.</p>
+<p>For example, let’s see how to solve the equation for eccentric anomaly <span class="math notranslate nohighlight">\(E\)</span>, part of the
+Kepler equations for an elliptic orbit:</p>
+<div class="math notranslate nohighlight">
+\[
+M_e = 2 \pi \frac{t}{T} = E - e \sin E \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(t\)</span> is the time of flight, <span class="math notranslate nohighlight">\(T\)</span> is the orbital period,
+<span class="math notranslate nohighlight">\(e\)</span> is the orbital eccentricity, and <span class="math notranslate nohighlight">\(M_e\)</span> is the mean anomaly.</p>
+<p>To solve any nonlinear equation like this using a numerical method, we need to shift
+the equation to a zero-valued form, like <span class="math notranslate nohighlight">\(f(x) = 0\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is the root of the equation
+and what we are trying to find. In this case, that means the equation looks like</p>
+<div class="math notranslate nohighlight">
+\[
+2 \pi \frac{t}{T} - \left( E - e \sin E \right) = 0 \;.
+\]</div>
+<p>We also need to identify a reasonable first guess for the numerical method to start
+its iterations. In this case, that is the Prussing estimate: <span class="math notranslate nohighlight">\(E_0 = M_e + \frac{e}{2}\)</span>.
+But, in general this first guess should be a value that is reasonable based on the
+problem at hand.</p>
+<p>Now, let’s look at how to solve this:</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="1c28d003-4247-421e-bb8a-93f1d741bf34" name="6cf3c891-0d28-4e92-9e71-8602416cd752" type="radio">
+</input><label class="tabbed-label" for="1c28d003-4247-421e-bb8a-93f1d741bf34">
+matlab</label><div class="tabbed-content docutils">
+<p>We need to define the known values to calculate the initial guess,
+and also make sure the necessary values are in the function.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">T</span> <span class="p">=</span> <span class="mi">60</span><span class="p">;</span>
+<span class="n">M_e</span> <span class="p">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">T</span><span class="p">;</span>
+<span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+
+<span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(@</span><span class="n">f</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
+
+<span class="n">function</span> <span class="s">zero</span> <span class="p">=</span> <span class="n">f</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">e</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span> <span class="n">t</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">T</span> <span class="p">=</span> <span class="mi">60</span><span class="p">;</span>
+    <span class="n">zero</span> <span class="p">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">E</span> <span class="o">-</span> <span class="n">e</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">E</span><span class="p">));</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+<p>Note that this code snippet assumes the function is defined inside your script file,
+at the bottom. You could also define it in a separate <code class="docutils literal notranslate"><span class="pre">.m</span></code> file, but then you would need
+to call it using <code class="docutils literal notranslate"><span class="pre">E</span> <span class="pre">=</span> <span class="pre">fzero('name.m',</span> <span class="pre">E0);</span></code>.</p>
+<p>This approach does rely on us defining variables twice, which is a pain if we need to change any of them. We can be a bit clever and instead define a new parameterized function:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="p">=</span> <span class="mf">0.1</span><span class="p">;</span>
+<span class="n">t</span> <span class="p">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">T</span> <span class="p">=</span> <span class="mi">60</span><span class="p">;</span>
+<span class="n">M_e</span> <span class="p">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">T</span><span class="p">;</span>
+<span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+
+<span class="n">f</span> <span class="p">=</span> <span class="p">@(</span><span class="n">E</span><span class="p">)</span> <span class="n">eccentric_anomaly</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span>
+<span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
+
+<span class="n">function</span> <span class="s">zero</span> <span class="p">=</span> <span class="n">eccentric_anomaly</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+    <span class="n">zero</span> <span class="p">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">E</span> <span class="o">-</span> <span class="n">e</span> <span class="o">*</span> <span class="nb">sin</span><span class="p">(</span><span class="n">E</span><span class="p">));</span>
+<span class="n">end</span>
+</pre></div>
+</div>
+</div>
+<input id="c790b091-badb-47a7-bac8-6abbed1a583c" name="6cf3c891-0d28-4e92-9e71-8602416cd752" type="radio">
+</input><label class="tabbed-label" for="c790b091-badb-47a7-bac8-6abbed1a583c">
+python</label><div class="tabbed-content docutils">
+<p>We can define the constants, and then use those both inside the function and in the main scope.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
+
+<span class="c1"># given values</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="k">def</span> <span class="nf">eccentric_anomaly</span><span class="p">(</span><span class="n">E</span><span class="p">):</span>
+   <span class="k">return</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">E</span> <span class="o">-</span> <span class="n">e</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+
+<span class="n">M_e</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">T</span>
+<span class="n">E0</span> <span class="o">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">eccentric_anomaly</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">E0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can also be more careful and include the necessary variables at parameters to the function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
+
+<span class="k">def</span> <span class="nf">eccentric_anomaly</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+   <span class="k">return</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="o">/</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">E</span> <span class="o">-</span> <span class="n">e</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+
+<span class="c1"># given values</span>
+<span class="n">e</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="n">M_e</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">T</span>
+<span class="n">E0</span> <span class="o">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">root_scalar</span><span class="p">(</span><span class="n">eccentric_anomaly</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="n">E0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
