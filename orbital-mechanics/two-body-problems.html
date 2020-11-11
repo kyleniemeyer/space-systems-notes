@@ -26,7 +26,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -45,7 +45,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -83,22 +83,19 @@
   <h1 class="site-logo" id="site-title">Space Systems Engineering notes</h1>
   
 </a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
-
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+    <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Space Systems Engineering Notes
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption collapsible-parent">
  <span class="caption-text">
   Getting started
  </span>
@@ -110,7 +107,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption collapsible-parent">
  <span class="caption-text">
   Orbital mechanics
  </span>
@@ -138,9 +135,7 @@
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -169,11 +164,11 @@
             <i class="fas fa-arrow-up"></i>
         </button>
         
-        <div class="dropdown-buttons-trigger">
+        
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -185,8 +180,8 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
+
         <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
@@ -442,8 +437,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="852030dd-8c67-4be3-bb79-b64def13dca0" name="c347a5e7-d1b2-45d3-868b-ff5c7f8ac08b" type="radio">
-</input><label class="tabbed-label" for="852030dd-8c67-4be3-bb79-b64def13dca0">
+<input checked="checked" id="a1e0c528-011a-4018-9299-103b4eadbaab" name="32178d7f-a30e-4905-89b0-0cf21ac85317" type="radio">
+</input><label class="tabbed-label" for="a1e0c528-011a-4018-9299-103b4eadbaab">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -477,8 +472,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="9192137d-9a4a-4ed5-83ba-67c3b85c1f83" name="c347a5e7-d1b2-45d3-868b-ff5c7f8ac08b" type="radio">
-</input><label class="tabbed-label" for="9192137d-9a4a-4ed5-83ba-67c3b85c1f83">
+<input id="c904dcf9-def4-463f-a365-2a20a8007630" name="32178d7f-a30e-4905-89b0-0cf21ac85317" type="radio">
+</input><label class="tabbed-label" for="c904dcf9-def4-463f-a365-2a20a8007630">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -625,8 +620,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1cf3232e-f5a1-4ecf-bfb9-b9551a520055" name="c2d17430-0fd3-4123-aa22-01764f03556a" type="radio">
-</input><label class="tabbed-label" for="1cf3232e-f5a1-4ecf-bfb9-b9551a520055">
+<input checked="checked" id="6af32f00-f89b-43eb-8bb5-9813175b29c3" name="1167cb9f-74c1-4515-89a7-586bd6f4eb88" type="radio">
+</input><label class="tabbed-label" for="6af32f00-f89b-43eb-8bb5-9813175b29c3">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(@</span><span class="n">f</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -638,8 +633,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="8efda9bc-8069-439c-a75f-ba337c3db940" name="c2d17430-0fd3-4123-aa22-01764f03556a" type="radio">
-</input><label class="tabbed-label" for="8efda9bc-8069-439c-a75f-ba337c3db940">
+<input id="2653aaca-1ac8-4013-b769-aeda4155f171" name="1167cb9f-74c1-4515-89a7-586bd6f4eb88" type="radio">
+</input><label class="tabbed-label" for="2653aaca-1ac8-4013-b769-aeda4155f171">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -763,8 +758,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="95960210-6db8-4357-9eaf-7a1b9f11616a" name="efb29647-d649-4fa8-8595-491faa3ef507" type="radio">
-</input><label class="tabbed-label" for="95960210-6db8-4357-9eaf-7a1b9f11616a">
+<input checked="checked" id="81200ff6-fdd9-4242-9b81-e379fe0e8c6f" name="767768ee-cd1d-4390-aeec-045dd77572cf" type="radio">
+</input><label class="tabbed-label" for="81200ff6-fdd9-4242-9b81-e379fe0e8c6f">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -792,8 +787,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="7e6b1583-27fb-4b9c-9f2b-f979049102e8" name="efb29647-d649-4fa8-8595-491faa3ef507" type="radio">
-</input><label class="tabbed-label" for="7e6b1583-27fb-4b9c-9f2b-f979049102e8">
+<input id="4f9eb74d-b227-4c4a-9cfd-51873b7b7741" name="767768ee-cd1d-4390-aeec-045dd77572cf" type="radio">
+</input><label class="tabbed-label" for="4f9eb74d-b227-4c4a-9cfd-51873b7b7741">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>

@@ -26,7 +26,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -45,7 +45,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -82,22 +82,19 @@
   <h1 class="site-logo" id="site-title">Space Systems Engineering notes</h1>
   
 </a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
-
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+    <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../intro.html">
    Space Systems Engineering Notes
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption collapsible-parent">
  <span class="caption-text">
   Getting started
  </span>
@@ -109,7 +106,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption collapsible-parent">
  <span class="caption-text">
   Orbital mechanics
  </span>
@@ -137,9 +134,7 @@
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -168,11 +163,11 @@
             <i class="fas fa-arrow-up"></i>
         </button>
         
-        <div class="dropdown-buttons-trigger">
+        
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -184,8 +179,8 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
+
         <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
@@ -250,6 +245,16 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#apse-line-rotation">
    Apse line rotation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-of-transfers">
+   Cost of transfers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#finite-burn-times">
+   Finite burn times
   </a>
  </li>
 </ul>
@@ -322,6 +327,135 @@ v_{3} &amp;= \frac{h_3}{r_{a2}} \;, \\
 </div>
 <div class="section" id="apse-line-rotation">
 <h2>Apse line rotation<a class="headerlink" href="#apse-line-rotation" title="Permalink to this headline">¶</a></h2>
+<p>A more general orbital transfer is an apse line rotation,
+which involves an instantaneous velocity change applied at some location in one orbit
+and leads to anew orbit with a different eccentricity and perigee/apogee distances.</p>
+<p><strong>Problem:</strong> Given initial perigee distance <span class="math notranslate nohighlight">\(r_{p1}\)</span>, initial apogee distance <span class="math notranslate nohighlight">\(r_{a1}\)</span>,
+desired perigee distance <span class="math notranslate nohighlight">\(r_{p2}\)</span>, desired apogee distance <span class="math notranslate nohighlight">\(r_{a2}\)</span>,
+and apse rotation angle <span class="math notranslate nohighlight">\(\eta\)</span>.</p>
+<p>Find: true anomaly of the burn <span class="math notranslate nohighlight">\(\theta_1\)</span>, required instantaneous velocity change <span class="math notranslate nohighlight">\(\Delta v\)</span>,
+and the required direction/angle of thrust from the local horizontal direction.</p>
+<p>Solution steps:</p>
+<ol>
+<li><p>Calculate <span class="math notranslate nohighlight">\(e_1\)</span>, <span class="math notranslate nohighlight">\(e_2\)</span>, <span class="math notranslate nohighlight">\(h_1\)</span>, <span class="math notranslate nohighlight">\(h_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   e_1 &amp;= \frac{r_{a1} - r_{p1}}{r_{a1} + r_{p1}} \\
+   r_p &amp;= \frac{h_1^2 / \mu}{1 + e_1} \\
+   \rightarrow h_1 &amp;= \sqrt{ r_p (1 + e_1) \mu} \;,
+   \end{align}
+   \end{split}\]</div>
+<p>then repeat for <span class="math notranslate nohighlight">\(e_2\)</span> and <span class="math notranslate nohighlight">\(h_2\)</span>.</p>
+</li>
+<li><p>Solve for the true anomalies in each orbit of the intercept, <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{align}
+  \eta &amp;= \theta_1 - \theta_2 \rightarrow \theta_2 = \theta_1 - \eta \\
+  r_{1I} &amp;= \frac{h_1^2 / \mu}{1 + e_1 \cos \theta_1} = r_{2I} = \frac{h_2^2 / \mu}{1 + e_2 \cos \theta_2}
+  \end{align}
+  \end{split}\]</div>
+<p>Following some math, we can solve for the angles:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{align}
+  \theta_1 &amp;= \phi + \cos^{-1} \left( \frac{c}{a} \cos \phi \right) \\
+  \theta_2 &amp;= \theta_1 - \eta \\
+  \text{where} \quad \phi &amp;= \tan^{-1} \left( \frac{b}{a} \right) \\
+  a &amp;= e_1 h_2^2 - e_2 h_1^2 \cos \eta \\
+  b &amp;= -e_2 h_1^2 \sin \eta \\
+  c &amp;= h_1^2 - h_2^2 \;,
+  \end{align}
+  \end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi\)</span> gives the direction of the local horizontal.</p>
+<ol class="simple">
+<li><p>Calculate the position and velocity in the initial orbit:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{align}
+  v_{theta 1} &amp;= \frac{h_1}{r_1} \\
+  v_{r 1} &amp;= \frac{\mu}{h_1} e_1 \sin \theta_1 \\
+  v_1 &amp;= \sqrt{ v_{r1}^2 + v_{\theta 1}^2 } \\
+  \gamma_1 &amp;= \tan^{-1} \left( \frac{v_{r1}}{v_{\theta 1}} \right)
+  \end{align}
+  \end{split}\]</div>
+<ol class="simple">
+<li><p>Calculate the position and velocity in the desired orbit:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{align}
+  v_{theta 1} &amp;= \frac{h_2}{r_2} \\
+  v_{r 2} &amp;= \frac{\mu}{h_2} e_2 \sin \theta_2 = \frac{\mu}{h_2} e_2 \sin (\theta_1 - \eta) \\
+  v_2 &amp;= \sqrt{ v_{r2}^2 + v_{\theta 2}^2 } \\
+  \gamma_2 &amp;= \tan^{-1} \left( \frac{v_{r2}}{v_{\theta 2}} \right)
+  \end{align}
+  \end{split}\]</div>
+<ol class="simple">
+<li><p>Calculate the instantaneous change in velocity needed:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+  \Delta v = \sqrt{ v_1^2 + v_2^2 - 2 v_1 v_2 \cos \left( \theta_2 - \theta_1 \right)} \;,
+  \]</div>
+<p>at the intercept location.</p>
+<ol class="simple">
+<li><p>Calculate the direction/angle of thrust:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+  I = \tan^{-1} \left( \frac{v_{r2} - v_{r1}}{v_{\theta 2} - v_{\theta 1}} \right) + 180^{\circ}
+  \]</div>
+</div>
+<div class="section" id="cost-of-transfers">
+<h2>Cost of transfers<a class="headerlink" href="#cost-of-transfers" title="Permalink to this headline">¶</a></h2>
+<p>The cost of an orbit transfer, in terms of the mass of propellant needed, depends on a few factors:</p>
+<ul class="simple">
+<li><p>propellant used</p></li>
+<li><p>thrust developed</p></li>
+<li><p>rate of fuel consumption (<span class="math notranslate nohighlight">\(\dot{m}\)</span>)</p></li>
+</ul>
+<p>The <strong>specific impulse</strong>, given in units of seconds, is a performance parameter that quantifies the amount of thrust developed to the mass flow rate of propellant required, where higher values indicate (theoretically) better performance:</p>
+<div class="math notranslate nohighlight">
+\[
+I_{sp} = \frac{T}{\dot{m} g_0} \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the thrust force (N), <span class="math notranslate nohighlight">\(\dot{m}\)</span> is the mass flow rate (kg/s),
+and <span class="math notranslate nohighlight">\(g_0\)</span> is the acceleration due to gravity on the ground (9.81 m/s<span class="math notranslate nohighlight">\(^2\)</span>).
+The mass flow rate is directly related to the time rate of change of vehicle mass:
+<span class="math notranslate nohighlight">\(\dot{m} = -\frac{dm}{dt}\)</span>.</p>
+<p>Based on a free-body diagram, we can write the equation of motion in the tangential (axial) direction:</p>
+<div class="math notranslate nohighlight">
+\[
+m a_t = T - D - m g \sin \gamma = m \frac{dV}{dt} \;,
+\]</div>
+<p>where in space we can neglect the effects of drag, or <span class="math notranslate nohighlight">\(D \approx 0\)</span>, due to the extremely rarified
+atmosphere (for highly accurate calculations, we <em>will</em> need to account for the perturbuations
+due to atmospheric drag); we can also neglect the weight due to reduced gravity, so <span class="math notranslate nohighlight">\(m g \approx 0\)</span>.
+We can also assume thrust is constant. Then:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+T = m \frac{dV}{dt} &amp;= I_{sp} g_0 \left( - \frac{dm}{dt} \right) \\
+- I_{sp} g_0 \frac{dm}{dt} &amp;= m \frac{dV}{dt} \\
+\int_{m_0}^{m_f} - I_{sp} g_0 \frac{dm}{m} &amp;= \int_0^{\Delta V} dV \\
+\Delta v &amp;= - I_{sp} g_0 \ln \left( \frac{m_f}{m_0} \right) \\
+\rightarrow \Delta m &amp;= m_0 \left( 1 - e^{-\Delta V / \left( I_{sp} g_0 \right)} \right) \;,
+\end{align}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta m = m_0 - m_f\)</span>, which is the <strong>ideal rocket equation</strong>,
+originally developed by Tsiolkovsky.
+Given the specific impulse and initial mass of a rocket, this tells us the
+change in mass needed (via exhaust of propellant) to achieve a particular change
+in velocity.</p>
+</div>
+<div class="section" id="finite-burn-times">
+<h2>Finite burn times<a class="headerlink" href="#finite-burn-times" title="Permalink to this headline">¶</a></h2>
+<p>While some burns can reasonably be approximated as instantaneous, other orbit transfers
+will involve or require finite burn times.</p>
 </div>
 </div>
 
