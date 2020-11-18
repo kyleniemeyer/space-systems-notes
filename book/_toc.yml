@@ -11,3 +11,8 @@
     - file: orbital-mechanics/orbits-space
     - file: orbital-mechanics/orbit-transfers
     - file: orbital-mechanics/rendezvous
+    - file: orbital-mechanics/orbit-perturbations
+    
+- part: Launch phase
+  chapters:
+    - file: launch-phase/propulsion
