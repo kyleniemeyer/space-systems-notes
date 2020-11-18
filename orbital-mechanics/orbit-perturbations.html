@@ -5,47 +5,47 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Space Systems Engineering Notes &#8212; Space Systems Engineering notes</title>
+    <title>Orbit Perturbations &#8212; Space Systems Engineering notes</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
     
   <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
   <link rel="stylesheet"
-    href="_static/vendor/open-sans_all/1.44.1/index.css">
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
   <link rel="stylesheet"
-    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"vector": ["\\vec{#1}", 1], "uvec": ["\\hat{#1}", 1], "mag": ["\\lVert#1\\rVert", 1], "cross": "\\times", "unit": ["#1~\\mathrm{#2}", 2]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
@@ -54,10 +54,11 @@
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Problem-solving tips" href="solving-tips.html" />
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Propulsion" href="../launch-phase/propulsion.html" />
+    <link rel="prev" title="Rendezvous" href="rendezvous.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -74,22 +75,22 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
+<a class="navbar-brand text-wrap" href="../index.html">
   
-  <img src="_static/logo.png" class="logo" alt="logo">
+  <img src="../_static/logo.png" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">Space Systems Engineering notes</h1>
   
 </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form>
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
    Space Systems Engineering Notes
   </a>
  </li>
@@ -101,7 +102,7 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="solving-tips.html">
+  <a class="reference internal" href="../solving-tips.html">
    Problem-solving tips
   </a>
  </li>
@@ -111,34 +112,34 @@
   Orbital mechanics
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="orbital-mechanics/conic-sections.html">
+  <a class="reference internal" href="conic-sections.html">
    Introduction to orbital mechanics: conic sections
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="orbital-mechanics/two-body-problems.html">
+  <a class="reference internal" href="two-body-problems.html">
    Two-body problems
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="orbital-mechanics/orbits-space.html">
+  <a class="reference internal" href="orbits-space.html">
    Orbits in space
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="orbital-mechanics/orbit-transfers.html">
+  <a class="reference internal" href="orbit-transfers.html">
    Orbit transfers
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="orbital-mechanics/rendezvous.html">
+  <a class="reference internal" href="rendezvous.html">
    Rendezvous
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="orbital-mechanics/orbit-perturbations.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Orbit Perturbations
   </a>
  </li>
@@ -150,7 +151,7 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="launch-phase/propulsion.html">
+  <a class="reference internal" href="../launch-phase/propulsion.html">
    Propulsion
   </a>
  </li>
@@ -194,9 +195,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/orbital-mechanics/orbit-perturbations.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -214,10 +215,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/kyleniemeyer/space-systems-notes/issues/new?title=Issue%20on%20page%20%2Fintro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/kyleniemeyer/space-systems-notes/issues/new?title=Issue%20on%20page%20%2Forbital-mechanics/orbit-perturbations.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/kyleniemeyer/space-systems-notes/edit/main/intro.md"><button
+        <a class="edit-button" href="https://github.com/kyleniemeyer/space-systems-notes/edit/main/orbital-mechanics/orbit-perturbations.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -232,10 +233,46 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/kyleniemeyer/space-systems-notes/main?urlpath=tree/orbital-mechanics/orbit-perturbations.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
     </div>
 
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atmospheric-drag">
+   Atmospheric drag
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gravitational-perturbations">
+   Gravitational perturbations
+  </a>
+ </li>
+</ul>
+
+        </nav>
         
     </div>
 </div>
@@ -244,23 +281,53 @@
         
               <div>
                 
-  <div class="section" id="space-systems-engineering-notes">
-<h1>Space Systems Engineering Notes<a class="headerlink" href="#space-systems-engineering-notes" title="Permalink to this headline">¶</a></h1>
-<p>This is a book of notes for the AAE 412/512: Space Systems Engineering course taught by
-<a class="reference external" href="https://niemeyer-research-group.github.io">Prof. Kyle Niemeyer</a> at Oregon State University.</p>
-<p>The reference textbooks for this course are:</p>
-<ul class="simple">
-<li><p><em>Fundamentals of Astrodynamics</em>, by Roger R. Bate, Donald D. Mueller, Jerry E. White, and William W. Saylor. Dover, Second Edition.</p></li>
-<li><p><a class="reference external" href="http://www.sme-smad.com"><em>Space Mission Engineering: The New SMAD</em></a>, by James R. Wertz, David F. Everett, and Jeffery J. Puschell. Microcosm Press.</p></li>
-<li><p><em>Elements of Rocket Propulsion</em>, by George P. Sutton and Oscar Biblarz. Wiley, Ninth Edition.</p></li>
-</ul>
-<p>The logo for these notes is licensed under the <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons BY-SA 3.0 license</a>.
-It was created by Peo~commonswiki and hosted on Wikipedia: https://commons.wikimedia.org/wiki/File:Angular_Parameters_of_Elliptical_Orbit.png</p>
-<div class="toctree-wrapper compound">
+  <div class="section" id="orbit-perturbations">
+<h1>Orbit Perturbations<a class="headerlink" href="#orbit-perturbations" title="Permalink to this headline">¶</a></h1>
+<div class="math notranslate nohighlight">
+\[
+\vec{\ddot{r}} = -\frac{\mu}{r^3} \vec{r} + \vec{a}_p \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{a}_p\)</span> is the acceleration due to perturbations from thrust,
+atmospheric drag, gravitational perturbations, or any other force.</p>
+<div class="section" id="atmospheric-drag">
+<h2>Atmospheric drag<a class="headerlink" href="#atmospheric-drag" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
+<div class="section" id="gravitational-perturbations">
+<h2>Gravitational perturbations<a class="headerlink" href="#gravitational-perturbations" title="Permalink to this headline">¶</a></h2>
+<p>The rotationally symmetric perturbation <span class="math notranslate nohighlight">\(\Phi (r, \phi)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\Phi (r, \phi) = \frac{\mu}{r} \sum_{k=2}^{\infty} J_k \left( \frac{R}{r} \right)^k P_k (\cos \phi) \;,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(J_k\)</span> are the zonal harmonics of the planet, <span class="math notranslate nohighlight">\(R\)</span> is the equatoriall radius (<span class="math notranslate nohighlight">\(R/r &lt; 1\)</span>), and <span class="math notranslate nohighlight">\(P_k\)</span> are Legendre polynomials of order <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p>For the Earth, the six zonal harmonics are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+J_2 &amp;= 0.00108263 \\
+J_3 &amp;= -2.33936 \times 10^{-3} J_2 \\
+J_4 &amp;= -1.49601 \times 10^{-3} J_2 \\
+J_5 &amp;= -0.20995 \times 10^{-3} J_2 \\
+J_6 &amp;= 0.49941 \times 10^{-3} J_2 \\
+J_7 &amp;= 0.32547 \times 10^{-3} J_2
+\end{align}
+\end{split}\]</div>
+<p>The perturbing acceleration is <span class="math notranslate nohighlight">\(\vec{a}_P = - \nabla \Phi\)</span>.</p>
+<p>The gravitational perturbation due to <span class="math notranslate nohighlight">\(J_2\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{a}_P = \frac{3}{2} \frac{J_2 \mu R^2}{r^4} \left[ \frac{x}{r} \left( 5 \frac{z^2}{r^2} - 1 \right) \hat{I} + \frac{y}{r} \left( 5 \frac{z^2}{r^2} - 1 \right) \hat{J} + \frac{z}{r} \left( 5 \frac{z^2}{r^2} - 3 \right) \hat{K} \right]
+\]</div>
+<p>The gravitational perturbation due to <span class="math notranslate nohighlight">\(J_3\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{a}_P = \frac{1}{2} \frac{J_3 \mu R^3}{r^5} \left[ 5 \frac{x}{r} \left( 7 \frac{z^3}{r^3} - 3 \frac{z}{r} \right) \hat{I} + 5 \frac{y}{r} \left( 7 \frac{z^3}{r^3} - 3 \frac{z}{r} \right) \hat{J} + \left( 35 \frac{z^4}{r^4} - 30 \frac{z^2}{r^2} + 3 \right) \hat{K} \right]
+\]</div>
+<p>Then, solving the equation of motion yields the perturbed orbit:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{\ddot{r}} = -\frac{\mu}{r^3} \vec{r} + \vec{a}_P
+\]</div>
 </div>
 </div>
 
@@ -277,7 +344,7 @@ It was created by Peo~commonswiki and hosted on Wikipedia: https://commons.wikim
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./."
+            path: "./orbital-mechanics"
         },
         predefinedOutput: true
     }
@@ -292,7 +359,8 @@ It was created by Peo~commonswiki and hosted on Wikipedia: https://commons.wikim
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="solving-tips.html" title="next page">Problem-solving tips</a>
+    <a class='left-prev' id="prev-link" href="rendezvous.html" title="previous page">Rendezvous</a>
+    <a class='right-next' id="next-link" href="../launch-phase/propulsion.html" title="next page">Propulsion</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -315,7 +383,7 @@ It was created by Peo~commonswiki and hosted on Wikipedia: https://commons.wikim
     </div>
 
     
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
 
 
     
