@@ -133,6 +133,11 @@
    Orbit transfers
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="rendezvous.html">
+   Rendezvous
+  </a>
+ </li>
 </ul>
 
 </nav> <!-- To handle the deprecated key -->
@@ -437,8 +442,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="9d09b3cd-7acd-4c3b-a15e-4057779b6ef9" name="3201131d-009b-4bbf-8b33-10b43dde4204" type="radio">
-</input><label class="tabbed-label" for="9d09b3cd-7acd-4c3b-a15e-4057779b6ef9">
+<input checked="checked" id="105538eb-f36c-47d4-81ee-3779951ac499" name="42bf8abb-e98b-4578-8022-b339368c93c7" type="radio">
+</input><label class="tabbed-label" for="105538eb-f36c-47d4-81ee-3779951ac499">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -472,8 +477,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="11eb71ec-594d-4c4d-ad99-62a61b0168d6" name="3201131d-009b-4bbf-8b33-10b43dde4204" type="radio">
-</input><label class="tabbed-label" for="11eb71ec-594d-4c4d-ad99-62a61b0168d6">
+<input id="51f09b96-945d-4781-815b-6beef7432fee" name="42bf8abb-e98b-4578-8022-b339368c93c7" type="radio">
+</input><label class="tabbed-label" for="51f09b96-945d-4781-815b-6beef7432fee">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -620,8 +625,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a4c5cbf9-c0f0-44e8-a39c-b9794ce58163" name="2e981f39-d627-4657-a044-a1687a230952" type="radio">
-</input><label class="tabbed-label" for="a4c5cbf9-c0f0-44e8-a39c-b9794ce58163">
+<input checked="checked" id="8dbdf306-f0c9-4d65-914e-5b5140e67cc9" name="30b3249c-aad5-459d-9df6-8b52937d535e" type="radio">
+</input><label class="tabbed-label" for="8dbdf306-f0c9-4d65-914e-5b5140e67cc9">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(@</span><span class="n">f</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -633,8 +638,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3f71b93b-c3e0-45a0-a3f4-15d74172869c" name="2e981f39-d627-4657-a044-a1687a230952" type="radio">
-</input><label class="tabbed-label" for="3f71b93b-c3e0-45a0-a3f4-15d74172869c">
+<input id="370091b8-d00f-4d2d-874e-01ead5d5a952" name="30b3249c-aad5-459d-9df6-8b52937d535e" type="radio">
+</input><label class="tabbed-label" for="370091b8-d00f-4d2d-874e-01ead5d5a952">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -758,8 +763,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="bfba4ee1-3816-48d1-8611-31946a06f354" name="69e3202d-1063-4ee1-93ea-48d81f153f44" type="radio">
-</input><label class="tabbed-label" for="bfba4ee1-3816-48d1-8611-31946a06f354">
+<input checked="checked" id="897c4f4f-36e3-4dbe-817d-adc17e8a9401" name="91b997fd-7ec0-4e55-9876-483fb8a67c7f" type="radio">
+</input><label class="tabbed-label" for="897c4f4f-36e3-4dbe-817d-adc17e8a9401">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -787,8 +792,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="8fb48575-f322-4525-831f-7dea022db6e8" name="69e3202d-1063-4ee1-93ea-48d81f153f44" type="radio">
-</input><label class="tabbed-label" for="8fb48575-f322-4525-831f-7dea022db6e8">
+<input id="03cc84b2-1418-4c4a-8c5b-c5bef384fda0" name="91b997fd-7ec0-4e55-9876-483fb8a67c7f" type="radio">
+</input><label class="tabbed-label" for="03cc84b2-1418-4c4a-8c5b-c5bef384fda0">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
