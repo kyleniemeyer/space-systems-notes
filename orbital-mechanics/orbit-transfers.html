@@ -455,7 +455,43 @@ in velocity.</p>
 <div class="section" id="finite-burn-times">
 <h2>Finite burn times<a class="headerlink" href="#finite-burn-times" title="Permalink to this headline">¶</a></h2>
 <p>While some burns can reasonably be approximated as instantaneous, other orbit transfers
-will involve or require finite burn times.</p>
+will involve or require finite burn times.
+These involve a burn of the engine starting at some time (and some true anomaly in the initial orbit), and leads to a different orbit, similar to an apse line rotation.</p>
+<p>To determine how a finite burn time affects an object’s orbit, we need to solve the orbital equation of motion, but with a thrust force:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{\ddot{r}} + \frac{\mu}{r^3} \vec{r} = \frac{\vec{F}_T}{m} = \frac{T \, \vec{v}}{m v} \;,
+\]</div>
+<p>assuming that the thrust force <span class="math notranslate nohighlight">\(\vec{F}_T\)</span>, with magnitude <span class="math notranslate nohighlight">\(T\)</span>, is in the same direction
+as the velocity <span class="math notranslate nohighlight">\(\vec{v}\)</span>,
+along with an equation for the changing mass of the vehicle, as it expels propellant:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dm}{dt} = -\frac{T}{I_{sp} g_0} \;.
+\]</div>
+<p>This can be solved by decomposing into a system of first-order equations, and integrating numerically:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+z_1 &amp;= x \quad \dot{z}_1 = z_4 \\
+z_2 &amp;= y \quad \dot{z}_2 = z_5 \\
+z_3 &amp;= z \quad \dot{z}_3 = z_6 \\
+z_4 &amp;= \dot{x} \quad \dot{z}_4 = \frac{-\mu}{r^3} z_1 + \frac{T z_4}{z_7 v} \\
+z_5 &amp;= \dot{y} \quad \dot{z}_5 = \frac{-\mu}{r^3} z_2 + \frac{T z_5}{z_7 v} \\
+z_6 &amp;= \dot{z} \quad \dot{z}_6 = \frac{-\mu}{r^3} z_3 + \frac{T z_6}{z_7 v} \\
+z_7 &amp;= m \quad \dot{z}_7 = -\frac{T}{I_{sp} g_0} \;,
+\end{align}
+\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+r &amp;= \sqrt{z_1^2 + z_2^2 + z_3^2} \\
+v &amp;= \sqrt{z_4^2 + z_5^2 + z_6^2} \;.
+\end{align}
+\end{split}\]</div>
+<p>To solve a problem where the burn time <span class="math notranslate nohighlight">\(\Delta t\)</span> to reach a particular orbit is unknown,
+an iterative approach can be used.</p>
 </div>
 </div>
 
