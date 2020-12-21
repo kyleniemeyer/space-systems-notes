@@ -40,7 +40,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -459,8 +458,8 @@ kind of orbit this is):</p>
 </ol>
 <p>Here’s example code in Matlab and Python for doing these steps:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="ea41efa3-64a7-4c4e-b41f-e2a2b5aaa700" name="0101dc64-5cac-4f42-b4c2-ce48623d8ce4" type="radio">
-</input><label class="tabbed-label" for="ea41efa3-64a7-4c4e-b41f-e2a2b5aaa700">
+<input checked="checked" id="a32b3a45-209b-44c5-8dc5-249261930e16" name="b46640b3-f961-44ab-82b4-da59180f6dff" type="radio">
+</input><label class="tabbed-label" for="a32b3a45-209b-44c5-8dc5-249261930e16">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="p">=</span> <span class="mf">398.6e3</span><span class="p">;</span> <span class="c">% km^3/s^2</span>
 <span class="n">r0</span> <span class="p">=</span> <span class="p">[.</span> <span class="p">.</span> <span class="p">.];</span>
@@ -494,8 +493,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="6ea3f29c-6793-456b-af2f-0935b2ef2641" name="0101dc64-5cac-4f42-b4c2-ce48623d8ce4" type="radio">
-</input><label class="tabbed-label" for="6ea3f29c-6793-456b-af2f-0935b2ef2641">
+<input id="fcabbc0c-b2bd-4a7b-8efd-58497f03e68a" name="b46640b3-f961-44ab-82b4-da59180f6dff" type="radio">
+</input><label class="tabbed-label" for="fcabbc0c-b2bd-4a7b-8efd-58497f03e68a">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -642,8 +641,8 @@ may not converge to the correct solution.</p>
    \]</div>
 <p>Then, use an equation solver to find <span class="math notranslate nohighlight">\(E\)</span>:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="4c66a02a-9b60-4d0d-bc2e-19ef33b4ac5a" name="48a119ec-2575-4ed2-aa48-3a7599bef2f4" type="radio">
-</input><label class="tabbed-label" for="4c66a02a-9b60-4d0d-bc2e-19ef33b4ac5a">
+<input checked="checked" id="491a47a9-0ee3-4104-8d2d-e55f6f317cc6" name="d1b09b21-ff55-4609-91fb-0cc535631b2d" type="radio">
+</input><label class="tabbed-label" for="491a47a9-0ee3-4104-8d2d-e55f6f317cc6">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">E0</span> <span class="p">=</span> <span class="n">M_e</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="n">E</span> <span class="p">=</span> <span class="n">fzero</span><span class="p">(@</span><span class="n">f</span><span class="p">,</span> <span class="n">E0</span><span class="p">);</span>
@@ -655,8 +654,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="a98fc612-45b2-43f6-8ac1-597cca9485ec" name="48a119ec-2575-4ed2-aa48-3a7599bef2f4" type="radio">
-</input><label class="tabbed-label" for="a98fc612-45b2-43f6-8ac1-597cca9485ec">
+<input id="c530fa04-0b22-40ca-ad6e-65f11ef780b2" name="d1b09b21-ff55-4609-91fb-0cc535631b2d" type="radio">
+</input><label class="tabbed-label" for="c530fa04-0b22-40ca-ad6e-65f11ef780b2">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root_scalar</span>
@@ -780,8 +779,8 @@ z_6 &amp;= \dot{z} \rightarrow \dot{z}_6 = \ddot{z} = -\frac{\mu}{r^3} z_3 \;,
 <p>where the radial position magnitude is <span class="math notranslate nohighlight">\(r = \sqrt{z_1^2 + z_2^2 + z_3^2}\)</span>.</p>
 <p>We can then integrate using <code class="docutils literal notranslate"><span class="pre">ode45()</span></code> in Matlab, or <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> in Python/SciPy:</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a20353bf-2c38-49b5-8efb-c7c397ae4005" name="34a1fb20-25da-4678-8261-5d4386a3116d" type="radio">
-</input><label class="tabbed-label" for="a20353bf-2c38-49b5-8efb-c7c397ae4005">
+<input checked="checked" id="ee73fc43-2097-4fde-aa84-172bd0013f59" name="faf715b3-87f6-447e-8e99-0346712af29e" type="radio">
+</input><label class="tabbed-label" for="ee73fc43-2097-4fde-aa84-172bd0013f59">
 matlab</label><div class="tabbed-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">clear</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">clc</span><span class="p">;</span>
 
@@ -809,8 +808,8 @@ matlab</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="aa9c7242-df9d-4791-9652-55153e099e75" name="34a1fb20-25da-4678-8261-5d4386a3116d" type="radio">
-</input><label class="tabbed-label" for="aa9c7242-df9d-4791-9652-55153e099e75">
+<input id="3ed7c4b0-688e-45e9-977a-da649a37f423" name="faf715b3-87f6-447e-8e99-0346712af29e" type="radio">
+</input><label class="tabbed-label" for="3ed7c4b0-688e-45e9-977a-da649a37f423">
 python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
